@@ -1,0 +1,27 @@
+import { createStore } from "zustand/vanilla";
+
+export type __NAME__State = {
+  loading: boolean;
+  data: unknown;
+};
+
+export type __NAME__Actions = {
+  setLoading: (loading: boolean) => void;
+  setData: (data: unknown) => void;
+};
+
+export type __NAME__Store = __NAME__State & __NAME__Actions;
+
+export const defaultInitState: __NAME__State = {
+  loading: true,
+  data: null,
+};
+
+export const create__NAME__Store = (
+  initState: __NAME__State = defaultInitState
+) =>
+  createStore<__NAME__Store>()((set) => ({
+    ...initState,
+    setLoading: (loading) => set({ loading }),
+    setData: (data) => set({ data }),
+  }));

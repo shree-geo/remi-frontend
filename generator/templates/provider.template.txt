@@ -1,0 +1,38 @@
+"use client";
+import {
+  create__NAME__Store,
+  type __NAME__Store,
+} from "@/store/__name__/store";
+import {
+  createContext,
+  type PropsWithChildren,
+  useContext,
+  useRef,
+} from "react";
+import { useStore } from "zustand";
+
+type __NAME__StoreApi = ReturnType<typeof create__NAME__Store>;
+
+const __NAME__Context = createContext<__NAME__StoreApi | undefined>(undefined);
+
+export function use__NAME__Store(): __NAME__Store {
+  const ctx = useContext(__NAME__Context);
+  if (!ctx)
+    throw new Error(
+      "use__NAME__Store must be used within a __NAME__StoreProvider"
+    );
+  return useStore(ctx);
+}
+
+export default function __NAME__StoreProvider({ children }: PropsWithChildren) {
+  const storeRef = useRef<__NAME__StoreApi | null>(null);
+  if (storeRef.current === null) {
+    storeRef.current = create__NAME__Store();
+  }
+  return (
+    // eslint-disable-next-line react-hooks/refs
+    <__NAME__Context.Provider value={storeRef.current}>
+      {children}
+    </__NAME__Context.Provider>
+  );
+}
