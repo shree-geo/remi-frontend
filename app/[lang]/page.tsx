@@ -1,6 +1,7 @@
 import { hasLocale } from "./dictionaries";
 import { notFound } from "next/navigation";
 import STranslation from "@/components/translations/STranslation";
+import Link from "next/link";
 
 export default async function Page(props: PageProps<"/[lang]">) {
   const { lang } = await props.params;
@@ -8,6 +9,9 @@ export default async function Page(props: PageProps<"/[lang]">) {
   return (
     <div>
       <STranslation tKey="title" slot="h1" />
+      <Link href={`/${lang}/dashboard`} className="text-blue-600 underline">
+        Dashboard
+      </Link>
     </div>
   );
 }
