@@ -1,0 +1,17 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.autoSave": "off",
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": [
+    "source.formatDocument",
+    "source.fixAll.eslint",
+    "source.organizeImports"
+  ],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "classNames",
+    "classNames *\\"
+  ]
+}
