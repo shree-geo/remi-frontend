@@ -1,15 +1,14 @@
 import { Users } from "lucide-react";
 
-export const allMenus: Record<
-  string,
-  Array<{
-    title: string;
-    url: string;
-    icon: React.ReactNode;
-    items?: Array<{ title: string; url: string }>;
-    isCollapsible: boolean;
-  }>
-> = {
+interface IMenu {
+  title: string;
+  url: string;
+  icon: React.ReactNode;
+  items?: Array<{ title: string; url: string }>;
+  isCollapsible: boolean;
+}
+
+export const allMenus: Record<string, Array<IMenu>> = {
   settings: [
     {
       title: "User Management",

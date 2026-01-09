@@ -8,9 +8,8 @@ import AuthProvider from "@/contexts/auth.context";
 import { AppSidebar } from "@/layouts/auth/appSidebar";
 import { BrandInfo } from "@/layouts/auth/brandInfo";
 import { DynamicBreadcrumb } from "@/layouts/auth/breadcrumb";
-import type { PropsWithChildren } from "react";
 
-export default function AuthLayout({ children }: PropsWithChildren) {
+export default function AuthLayout({ children }: LayoutProps<"/[lang]">) {
   return (
     <AuthProvider>
       <SidebarProvider>

@@ -11,8 +11,18 @@ const columns: Column<User>[] = [
   new Column("id"),
   new Column("name", {
     header: "Full Name",
+    cell: (user) => <strong>{user.name}</strong>,
   }),
   new Column("email"),
+  Column.display({
+    header: "Actions",
+    cell: () => (
+      <div>
+        <button className="text-blue-600 underline mr-2">Edit</button>
+        <button className="text-red-600 underline">Delete</button>
+      </div>
+    ),
+  }),
 ];
 
 export default async function ListUsers() {

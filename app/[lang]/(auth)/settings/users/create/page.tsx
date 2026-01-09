@@ -1,3 +1,9 @@
+import STranslation from "@/components/molecules/translations/STranslation";
+
 export default function Page() {
-  return <>Create user</>;
+  return (
+    <>
+      <STranslation tKey="Create user" />
+    </>
+  );
 }

@@ -1,15 +1,18 @@
 import { getT } from "@/i18n";
-import { PropsWithChildren } from "react";
+import type { ComponentType, PropsWithChildren, ReactNode } from "react";
+
+interface STranslationPropsBase extends Record<string, unknown> {
+  tKey: string;
+  ns?: string;
+  options?: { keyPrefix?: string };
+  slot?: ComponentType<{ children: ReactNode }> | string;
+}
 
 export default async function STranslation(
-  props: PropsWithChildren<{
-    tKey: string;
-    slot?: React.ComponentType<{ children: React.ReactNode }> | string;
-    ns?: string;
-    options?: { keyPrefix?: string };
-  }>
+  props: PropsWithChildren<STranslationPropsBase>
 ) {
-  const Component = props.slot || "p";
-  const { t } = await getT(props.ns || "common", props.options);
-  return <Component>{t(props.tKey)}</Component>;
+  const { slot, ns, options, tKey, ...rest } = props;
+  const Component = slot || "p";
+  const { t } = await getT(ns || "common", options);
+  return <Component {...rest}>{t(tKey)}</Component>;
 }
