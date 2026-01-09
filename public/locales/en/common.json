@@ -1,3 +1,6 @@
 {
-  "title": "Welcome to Remi"
+  "title": "Welcome to Remi",
+  "table": {
+    "noData": "No data available"
+  }
 }

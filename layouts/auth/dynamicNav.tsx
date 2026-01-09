@@ -6,20 +6,9 @@ import {
   SidebarMenu,
 } from "@/components/ui/sidebar";
 import { NavItem } from "./navItem";
+import { allMenus } from "./data/navMenus";
 
 export async function DynamicNav() {
-  // Fetch all menu items with their children
-  const allMenus: Record<
-    string,
-    Array<{
-      title: string;
-      url: string;
-      icon: React.ReactNode;
-      items: Array<{ title: string; url: string }>;
-      isCollapsible: boolean;
-    }>
-  > = {};
-
   return (
     <>
       <SidebarGroup>

@@ -1,0 +1,8 @@
+{
+  "user": {
+    "list": {
+      "title": "User Management",
+      "description": "Manage application users, roles, and permissions."
+    }
+  }
+}
