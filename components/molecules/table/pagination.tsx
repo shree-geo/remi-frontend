@@ -74,7 +74,7 @@ export default function Pagination(props: PaginationProps) {
         })}
         <PaginationItem>
           <Button size="icon-sm" asChild>
-            <PaginationLink>{currentPage}</PaginationLink>
+            <PaginationLink href="#">{currentPage}</PaginationLink>
           </Button>
         </PaginationItem>
         {nextPages.map((page, i) => {
