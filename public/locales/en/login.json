@@ -1,4 +1,8 @@
 {
   "title": "Sign In to Your Account",
-  "description": "Enter your credentials to access the system."
+  "description": "Enter your credentials to access the system.",
+  "emailLabel": "Email Address",
+  "passwordLabel": "Password",
+  "signInButton": "Sign In",
+  "signingInButton": "Signing In..."
 }

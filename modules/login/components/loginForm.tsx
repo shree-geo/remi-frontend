@@ -1,4 +1,5 @@
 "use client";
+import CTranslation from "@/components/molecules/translations/CTranslation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,7 +23,9 @@ export default function LoginForm() {
   return (
     <form className="space-y-4" action={action}>
       <div className="space-y-2">
-        <Label htmlFor="email">Email address</Label>
+        <Label htmlFor="email">
+          <CTranslation tKey="emailLabel" ns="login" />
+        </Label>
         <Input
           id="email"
           name="email"
@@ -36,7 +39,9 @@ export default function LoginForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">
+          <CTranslation tKey="passwordLabel" ns="login" />
+        </Label>
         <Input
           id="password"
           name="password"
@@ -47,7 +52,10 @@ export default function LoginForm() {
       </div>
 
       <Button type="submit" className="w-full">
-        {pending ? "Signing in..." : "Sign in"}
+        <CTranslation
+          tKey={pending ? "signingInButton" : "signInButton"}
+          ns="login"
+        />
       </Button>
     </form>
   );
