@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import DemoAccounts from "@modules/login/components/demoAccounts";
 import Footer from "@modules/login/components/footer";
 import Header from "@modules/login/components/header";
 import LoginForm from "@modules/login/components/loginForm";
@@ -29,7 +28,6 @@ const Login = () => {
             <LoginForm />
           </CardContent>
         </Card>
-        <DemoAccounts />
         <Footer />
       </div>
     </div>
