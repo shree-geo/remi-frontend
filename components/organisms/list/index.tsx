@@ -1,4 +1,5 @@
 import Table from "@/components/molecules/table";
+import Pagination from "@/components/molecules/table/pagination";
 import { ComponentProps } from "react";
 import ListHeader from "./listHeader";
 
@@ -7,6 +8,7 @@ interface ListProps<
 > {
   headerProps: ComponentProps<typeof ListHeader>;
   tableProps: ComponentProps<typeof Table<T>>;
+  paginationProps: ComponentProps<typeof Pagination>;
 }
 
 export default function List<
@@ -16,6 +18,7 @@ export default function List<
     <div className="flex flex-col items-stretch space-y-4">
       <ListHeader {...props.headerProps} />
       <Table {...props.tableProps} />
+      <Pagination {...props.paginationProps} />
     </div>
   );
 }
