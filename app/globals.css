@@ -54,9 +54,17 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
+  /*
+  This needs to be changed later to a more vibrant color 
   --primary: oklch(0.205 0 0);
+   */
+  --primary: oklch(54.6% 0.245 262.881);
   --primary-foreground: oklch(0.985 0 0);
+  /*
+  This needs to be changed later to a more vibrant color 
   --secondary: oklch(0.97 0 0);
+   */
+  --secondary: oklch(58.6% 0.253 17.585);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -89,7 +97,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.87 0.00 0);
+  --primary: oklch(0.87 0 0);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
