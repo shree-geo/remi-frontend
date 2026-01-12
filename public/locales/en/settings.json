@@ -3,6 +3,9 @@
     "list": {
       "title": "User Management",
       "description": "Manage application users, roles, and permissions."
+    },
+    "form": {
+      "firstNameLabel": "First Name"
     }
   }
 }
