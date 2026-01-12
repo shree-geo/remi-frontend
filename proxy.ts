@@ -1,5 +1,3 @@
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
 import {
   cookieName,
   fallbackLng,
@@ -7,6 +5,8 @@ import {
   languages,
 } from "@/i18n/settings";
 import acceptLanguage from "accept-language";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 acceptLanguage.languages(languages);
 
@@ -57,5 +57,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next).*)"],
+  matcher: ["/((?!_next)(?!.*.[^/]+$).*)"],
 };
