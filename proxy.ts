@@ -12,7 +12,11 @@ acceptLanguage.languages(languages);
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (pathname.indexOf("icon") > -1 || pathname.indexOf("chrome") > -1) {
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.includes(".") ||
+    pathname.startsWith("/api")
+  ) {
     return NextResponse.next();
   }
 
@@ -57,5 +61,15 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next)(?!.*.[^/]+$).*)"],
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - any file with an extension (e.g. .svg, .png, .jpg, .pdf)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.[\\w]+$).*)",
+  ],
 };
