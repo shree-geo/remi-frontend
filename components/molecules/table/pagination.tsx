@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import {
   Pagination as PaginationAtom,
@@ -9,22 +8,22 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 interface PaginationPropsBase {
   total: number;
-  offset?: number;
-  limit?: number;
+  searchParams: Awaited<PageProps<never>["searchParams"]>;
 }
 
 type PaginationProps = PaginationPropsBase;
 
 export default function Pagination(props: PaginationProps) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  const { offset = 0, limit = 10, total = 0 } = props;
+  const { searchParams, total = 0 } = props;
+  const offset = searchParams?.offset
+    ? parseInt(searchParams.offset as string, 10)
+    : 0;
+  const limit = searchParams?.limit
+    ? parseInt(searchParams.limit as string, 10)
+    : 10;
   const totalPages = Math.ceil(total / limit);
   const currentPage = Math.ceil(offset / limit) + 1;
   const prevPage = currentPage - 1;
@@ -43,32 +42,20 @@ export default function Pagination(props: PaginationProps) {
     (_, i) => currentPage + (i + 1)
   );
 
-  const handlePageChange = (page: number, limit: number = 10) => {
+  const getPaginatedUrl = (page: number, limit: number = 10) => {
     const newOffset = (page - 1) * limit;
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const newSearchParams = new URLSearchParams();
     newSearchParams.set("offset", newOffset.toString());
     newSearchParams.set("limit", limit.toString());
-    router.push(`?${newSearchParams.toString()}`);
+    return `?${newSearchParams.toString()}`;
   };
-
-  useEffect(() => {
-    if (limit == null || offset == null) {
-      handlePageChange(1, 10);
-    }
-  }, []);
 
   return (
     <PaginationAtom>
       <PaginationContent>
         {hasPrevPage && (
           <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handlePageChange(prevPage);
-              }}
-            />
+            <PaginationPrevious href={getPaginatedUrl(prevPage, limit)} />
           </PaginationItem>
         )}
         {startPage > 1 && (
@@ -79,41 +66,21 @@ export default function Pagination(props: PaginationProps) {
         {prevPages.map((page, i) => {
           return (
             <PaginationItem key={i}>
-              <PaginationLink
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(page);
-                }}
-              >
+              <PaginationLink href={getPaginatedUrl(page, limit)}>
                 {page}
               </PaginationLink>
             </PaginationItem>
           );
         })}
         <PaginationItem>
-          <Button size="icon-sm">
-            <PaginationLink
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handlePageChange(currentPage);
-              }}
-            >
-              {currentPage}
-            </PaginationLink>
+          <Button size="icon-sm" asChild>
+            <PaginationLink>{currentPage}</PaginationLink>
           </Button>
         </PaginationItem>
         {nextPages.map((page, i) => {
           return (
             <PaginationItem key={i}>
-              <PaginationLink
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(page);
-                }}
-              >
+              <PaginationLink href={getPaginatedUrl(page, limit)}>
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -126,13 +93,7 @@ export default function Pagination(props: PaginationProps) {
         )}
         {hasNextPage && (
           <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handlePageChange(nextPage);
-              }}
-            />
+            <PaginationNext href={getPaginatedUrl(nextPage, limit)} />
           </PaginationItem>
         )}
       </PaginationContent>

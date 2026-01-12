@@ -8,8 +8,7 @@ interface User extends Record<string, unknown> {
 }
 
 interface ListUsersProps {
-  offset?: number;
-  limit?: number;
+  searchParams: Awaited<PageProps<never>["searchParams"]>;
 }
 
 const columns: Column<User>[] = [
@@ -30,7 +29,14 @@ const columns: Column<User>[] = [
   }),
 ];
 
-export default async function ListUsers({ offset, limit }: ListUsersProps) {
+export default async function ListUsers(props: ListUsersProps) {
+  const { searchParams } = props;
+  const offset = searchParams?.offset
+    ? parseInt(searchParams.offset as string, 10)
+    : 0;
+  const limit = searchParams?.limit
+    ? parseInt(searchParams.limit as string, 10)
+    : 10;
   const response = await fetch(
     `http://45.117.153.120/api/v1/irc/public?offset=${offset || 0}&limit=${
       limit || 10
@@ -38,6 +44,7 @@ export default async function ListUsers({ offset, limit }: ListUsersProps) {
   );
   const json = await response.json();
   const users = json?.data?.results || [];
+  const total = json?.data?.count || 0;
   return (
     <div>
       <List<User>
@@ -52,9 +59,8 @@ export default async function ListUsers({ offset, limit }: ListUsersProps) {
           data: users as User[],
         }}
         paginationProps={{
-          total: 50,
-          offset: offset,
-          limit: limit,
+          total,
+          searchParams: props.searchParams,
         }}
       />
     </div>
