@@ -1,8 +1,8 @@
 "use client";
-import i18next from "./i18next";
 import { useParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import i18next from "./i18next";
 
 const runsOnServerSide = typeof window === "undefined";
 
@@ -10,7 +10,7 @@ export function useT(
   ns: string | string[],
   options: { keyPrefix?: string } | undefined
 ) {
-  const lng = useParams()?.lng;
+  const lng = useParams()?.lang;
   const hasChangedLanguage = useRef(false);
 
   if (typeof lng !== "string") {
