@@ -8,11 +8,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import DemoAccounts from "./components/demoAccounts";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import LoginForm from "./components/loginForm";
+import { demoAccounts } from "./constants/credentials";
 
 const Login = () => {
   const router = useRouter();
@@ -21,35 +22,37 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogin = async (eEmail: string, pPassword: string) => {
+  const handleLogin = useCallback(async () => {
     setIsLoading(true);
     setError("");
     try {
-      // Mock login logic
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      if (eEmail && pPassword) {
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      const isValidDemo = demoAccounts.some(
+        (acc) => acc.email === email && acc.password === password
+      );
+
+      if (isValidDemo) {
         router.push("/dashboard");
       } else {
-        setError("Please enter both email and password.");
+        setError("Invalid credentials. Only demo accounts can log in.");
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [email, password, router]);
 
-  const handleSelectAccount = (e: string, p: string) => {
+  const handleSelectAccount = useCallback((e: string, p: string) => {
     setEmail(e);
     setPassword(p);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4">
       <div className="w-full max-w-md space-y-6">
-        {/* Header */}
         <Header />
-        {/* Login Card */}
         <Card>
           <CardHeader>
             <CardTitle>Sign in to your account</CardTitle>

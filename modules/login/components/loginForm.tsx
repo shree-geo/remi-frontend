@@ -2,12 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AlertCircle } from "lucide-react";
+
 interface LoginFormProps {
   email: string;
-  setEmail: (email: string) => void;
   password: string;
+  setEmail: (email: string) => void;
   setPassword: (password: string) => void;
-  onSubmit: (email: string, password: string) => Promise<void>;
+  onSubmit: () => Promise<void>;
   isLoading: boolean;
   error: string;
 }
@@ -23,7 +24,7 @@ export default function LoginForm({
 }: LoginFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await onSubmit(email, password);
+    await onSubmit();
   };
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

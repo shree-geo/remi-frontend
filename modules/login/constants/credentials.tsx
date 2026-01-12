@@ -1,4 +1,6 @@
-export const demoAccounts = [
+import { DemoAccount } from "../type/type";
+
+export const demoAccounts: DemoAccount[] = [
   { email: "admin@rmis.gov.np", password: "admin123", role: "Super Admin" },
   {
     email: "mobilizer@rmis.gov.np",
