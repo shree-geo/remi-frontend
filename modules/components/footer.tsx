@@ -27,7 +27,7 @@ export default function Footer() {
           <STranslation
             tKey="supportedBy"
             ns="login"
-            className="text-xs tracking-widest text-muted-foreground/80 font-semibold"
+            className="text-xs font-semibold transition-colors text-muted-foreground hover:text-foreground"
           />
           <Link
             href="https://remi.org.np/"
@@ -50,7 +50,7 @@ export default function Footer() {
           <STranslation
             tKey="developedBy"
             ns="login"
-            className="text-xs tracking-widest text-muted-foreground/80 font-semibold"
+            className="text-xs font-semibold transition-colors text-muted-foreground hover:text-foreground"
           />
           <Link
             href="https://www.youngminds.com.np/"
