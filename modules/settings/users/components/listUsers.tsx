@@ -7,6 +7,11 @@ interface User extends Record<string, unknown> {
   email: string;
 }
 
+interface ListUsersProps {
+  offset?: number;
+  limit?: number;
+}
+
 const columns: Column<User>[] = [
   new Column("id"),
   new Column("name", {
@@ -25,9 +30,14 @@ const columns: Column<User>[] = [
   }),
 ];
 
-export default async function ListUsers() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users = await response.json();
+export default async function ListUsers({ offset, limit }: ListUsersProps) {
+  const response = await fetch(
+    `http://45.117.153.120/api/v1/irc/public?offset=${offset || 0}&limit=${
+      limit || 10
+    }`
+  );
+  const json = await response.json();
+  const users = json?.data?.results || [];
   return (
     <div>
       <List<User>
@@ -40,6 +50,11 @@ export default async function ListUsers() {
         tableProps={{
           columns: columns,
           data: users as User[],
+        }}
+        paginationProps={{
+          total: 50,
+          offset: offset,
+          limit: limit,
         }}
       />
     </div>
