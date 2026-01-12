@@ -34,7 +34,9 @@ export default function LoginForm() {
           required
         />
         {state.error?.email && (
-          <p className="text-red-500">{state.error.email}</p>
+          <p className="text-red-500">
+            <CTranslation tKey={state.error.email as string} ns="login" />
+          </p>
         )}
       </div>
 
@@ -49,6 +51,11 @@ export default function LoginForm() {
           placeholder="••••••••"
           required
         />
+        {state.error?.password && (
+          <p className="text-red-500">
+            <CTranslation tKey={state.error.password as string} ns="login" />
+          </p>
+        )}
       </div>
 
       <Button type="submit" className="w-full">

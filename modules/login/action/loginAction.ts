@@ -1,5 +1,5 @@
 import { catchActionError } from "@/lib/catchActionError";
-import { demoAccounts } from "../constants/credentials";
+import { accountCredentials } from "../constants/credentials";
 import { loginSchema } from "../definitions/login.definition";
 import { LoginActionState } from "../definitions/type";
 
@@ -15,11 +15,11 @@ export async function loginAction(
     const validatedData = loginSchema.parse(rawData);
     const data = validatedData;
 
-    const isValidDemo = demoAccounts.some(
+    const isValidAccount = accountCredentials.some(
       (acc) => acc.email === data.email && acc.password === data.password
     );
 
-    if (isValidDemo) {
+    if (isValidAccount) {
       return {
         ...prevState,
         error: null,
@@ -29,7 +29,8 @@ export async function loginAction(
       return {
         ...prevState,
         error: {
-          email: "Invalid credentials. Only demo accounts can log in.",
+          email: "emailError",
+          password: "passwordError",
         },
         success: false,
       };

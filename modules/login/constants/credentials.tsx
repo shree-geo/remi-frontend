@@ -1,6 +1,6 @@
 import { CredentialsType } from "../definitions/type";
 
-export const demoAccounts: (CredentialsType & { role: string })[] = [
+export const accountCredentials: (CredentialsType & { role: string })[] = [
   { email: "admin@rmis.gov.np", password: "admin123", role: "Super Admin" },
   {
     email: "mobilizer@rmis.gov.np",
