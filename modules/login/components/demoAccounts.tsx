@@ -1,11 +1,9 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { demoAccounts } from "../constants/credentials";
 
-interface DemoAccountsProps {
-  onSelect: (email: string, password: string) => void;
-}
-
-export default function DemoAccounts({ onSelect }: DemoAccountsProps) {
+export default function DemoAccounts() {
+  function onSelect(email: string, password: string) {}
   return (
     <Card className="bg-accent/5">
       <CardHeader className="pb-3">
