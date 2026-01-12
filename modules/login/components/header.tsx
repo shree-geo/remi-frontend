@@ -1,18 +1,28 @@
 import STranslation from "@/components/molecules/translations/STranslation";
-import { FileText } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <div className="text-center">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary">
-        <FileText className="h-7 w-7 text-primary-foreground" />
+      <div className="mx-auto flex items-center justify-center gap-2">
+        <Image
+          src="/gov-logo.png"
+          alt="Government of Nepal"
+          width={100}
+          height={100}
+          className="h-12 w-12"
+        />
+        <STranslation
+          tKey="headerTitle"
+          ns="login"
+          className="text-2xl font-bold"
+        />
       </div>
-      <h1 className="mt-4 text-2xl font-bold">
-        <STranslation tKey="headerTitle" ns="login" />
-      </h1>
-      <p className="mt-1 text-sm text-muted-foreground">
-        <STranslation tKey="headerDescription" ns="login" />
-      </p>
+      <STranslation
+        tKey="headerDescription"
+        ns="login"
+        className="mt-2 text-sm text-muted-foreground"
+      />
     </div>
   );
 }

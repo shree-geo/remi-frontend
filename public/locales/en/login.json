@@ -9,5 +9,7 @@
   "signingInButton": "Signing In...",
   "emailError": "Please enter a valid email address.",
   "passwordError": "Please enter a valid password.",
-  "footer": " Ministry of Labour, Employment and Social Security • Nepal"
+  "footer": " Ministry of Labour, Employment and Social Security • Nepal",
+  "developedBy": "Developed By:",
+  "supportedBy": "Supported By:"
 }
