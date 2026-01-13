@@ -11,7 +11,7 @@ import { AlertCircleIcon, InfoIcon } from "lucide-react";
 import { ComponentProps } from "react";
 import CTranslation from "../translations/CTranslation";
 
-interface SelectElementProps extends ComponentProps<typeof Select> {
+interface SelectElementProps extends ComponentProps<typeof SelectGroup> {
   label: TranslationDefinition;
   error?: TranslationDefinition | string;
   helper?: TranslationDefinition | string;
