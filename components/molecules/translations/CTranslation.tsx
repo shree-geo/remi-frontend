@@ -1,10 +1,8 @@
+import { TranslationDefinition } from "@/definitions/translation.definition";
 import { useT } from "@/i18n/client";
 import type { ComponentType, PropsWithChildren, ReactNode } from "react";
 
-interface CTranslationPropsBase extends Record<string, unknown> {
-  tKey: string;
-  ns?: string;
-  options?: { keyPrefix?: string };
+interface CTranslationPropsBase extends TranslationDefinition {
   slot?: ComponentType<{ children: ReactNode }> | string;
 }
 
