@@ -1,3 +1,5 @@
+import Footer from "@/components/layouts/footer";
+import Header from "@/components/layouts/header";
 import STranslation from "@/components/molecules/translations/STranslation";
 import {
   Card,
@@ -6,8 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Footer from "@/modules/components/footer";
-import Header from "@/modules/components/header";
 import LoginForm from "@modules/login/components/loginForm";
 
 const Login = () => {
