@@ -9,7 +9,6 @@ export async function POST(request: NextRequest) {
 
     // Call external API for authentication
     const response = await api.post(`/auth/token/`, { email, password });
-
     const data = await response.data?.data;
 
     const { refresh, access } = data;
@@ -27,10 +26,6 @@ export async function POST(request: NextRequest) {
       refresh: refresh,
     });
   } catch (error) {
-    console.log(error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json(error, { status: 500 });
   }
 }

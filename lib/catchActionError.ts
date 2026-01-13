@@ -1,4 +1,5 @@
 import { ActionState } from "@/definitions/action.definition";
+import { AxiosError } from "axios";
 import z from "zod";
 
 export async function catchActionError<
@@ -7,7 +8,6 @@ export async function catchActionError<
   try {
     return await cb();
   } catch (error) {
-    console.error("CATCH ERROR", error);
     if (error instanceof z.ZodError) {
       const errors = error.issues.reduce((acc, curr) => {
         acc[String(curr.path[0])] = curr.message || "";
@@ -17,6 +17,15 @@ export async function catchActionError<
         ...state,
         error: errors,
         message: "Validation error. Please check your input.",
+        success: false,
+      } as ActionState<T>;
+    } else if (error instanceof AxiosError) {
+      return {
+        ...state,
+        error: error.response?.data,
+        message:
+          error.response?.data?.message ||
+          "Something went wrong. Please try again.",
         success: false,
       } as ActionState<T>;
     } else {
