@@ -19,6 +19,7 @@ export async function decrypt(token: string): Promise<JWTPayload | null> {
     const { payload } = await jwtVerify(token, secret);
     return payload;
   } catch (error) {
+    console.log("DECRYPT SESSION ERROR", error);
     return null;
   }
 }

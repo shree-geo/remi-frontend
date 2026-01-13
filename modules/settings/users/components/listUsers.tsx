@@ -1,9 +1,10 @@
 import Column from "@/components/molecules/table/table.utils";
 import List from "@/components/organisms/list";
+import { getUsers } from "../data/users";
 
 interface User extends Record<string, unknown> {
   id: string;
-  name: string;
+  fullname: string;
   email: string;
 }
 
@@ -13,9 +14,9 @@ interface ListUsersProps {
 
 const columns: Column<User>[] = [
   new Column("id"),
-  new Column("name", {
+  new Column("fullname", {
     header: "Full Name",
-    cell: (user) => <strong>{user.name}</strong>,
+    cell: (user) => <strong>{user.fullname}</strong>,
   }),
   new Column("email"),
   Column.display({
@@ -37,14 +38,13 @@ export default async function ListUsers(props: ListUsersProps) {
   const limit = searchParams?.limit
     ? parseInt(searchParams.limit as string, 10)
     : 10;
-  const response = await fetch(
-    `http://45.117.153.120/api/v1/irc/public?offset=${offset || 0}&limit=${
-      limit || 10
-    }`
-  );
-  const json = await response.json();
-  const users = json?.data?.results || [];
-  const total = json?.data?.count || 0;
+  const [response, error] = await getUsers({ query: { offset, limit } });
+  if (error) {
+    throw new Error(error.message);
+  }
+  const total = response?.data?.data?.count || 0;
+  const users = response?.data?.data?.results || [];
+
   return (
     <div>
       <List<User>

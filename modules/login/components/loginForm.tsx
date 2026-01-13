@@ -16,6 +16,8 @@ export default function LoginForm() {
     success: false,
   });
 
+  console.log("error", state.error);
+
   if (state.success) {
     redirect("/dashboard");
   }

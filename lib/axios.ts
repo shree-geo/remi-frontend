@@ -5,7 +5,7 @@ const api = Axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
-api.interceptors.request.use((config) => {
+api.interceptors.request.use(async (config) => {
   return config;
 });
 
@@ -13,7 +13,9 @@ api.interceptors.response.use(
   (res: AxiosResponse) => {
     return res;
   },
-  async (_error: AxiosError) => {}
+  async (error: AxiosError) => {
+    throw error;
+  }
 );
 
 const nextApi = Axios.create({});
@@ -26,7 +28,9 @@ nextApi.interceptors.response.use(
   (res: AxiosResponse) => {
     return res;
   },
-  async (_error: AxiosError) => {}
+  async (error: AxiosError) => {
+    throw error;
+  }
 );
 
 export { api, nextApi };
