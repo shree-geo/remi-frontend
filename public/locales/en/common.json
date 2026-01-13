@@ -2,5 +2,13 @@
   "title": "Welcome to Remi",
   "table": {
     "noData": "No data available"
+  },
+  "navbar": {
+    "logout": "Logout"
+  },
+  "logout": {
+    "title": "Logout",
+    "description": "Are you sure you want to logout?",
+    "actionBtnText": "Log out"
   }
 }

@@ -7,6 +7,6 @@ export interface ModalProps {
   additionalContent?: ReactNode;
   action: ReturnType<typeof useActionState<unknown, FormData>>;
   triggerComponent: ReactNode;
-  actionButtonText?: string;
+  actionButtonText?: ReactNode;
   actionButtonProps?: React.ComponentProps<typeof Button>;
 }

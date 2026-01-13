@@ -27,8 +27,8 @@ export default function Modal({
       <DialogContent className="sm:max-w-106.25">
         <form action={action[1]}>
           <DialogHeader className="mb-4">
-            <DialogTitle>{title}</DialogTitle>
-            <DialogDescription>{description}</DialogDescription>
+            <DialogTitle asChild>{title}</DialogTitle>
+            <DialogDescription asChild>{description}</DialogDescription>
           </DialogHeader>
           {additionalContent ? (
             <div className="my-4">{additionalContent}</div>
