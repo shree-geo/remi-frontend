@@ -1,9 +1,9 @@
-import STranslation from "@/components/molecules/translations/STranslation";
+import UserForm from "@/modules/settings/users/components/userForm";
 
 export default function Page() {
   return (
     <>
-      <STranslation tKey="Create user" />
+      <UserForm />
     </>
   );
 }
