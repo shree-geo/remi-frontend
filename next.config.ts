@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/v1/:path*/",
-        destination: "http://45.117.153.120/api/v1/:path*/",
+        destination: "https://irerp.youngminds.com.np/api/v1/:path*/",
       },
     ];
   },
