@@ -9,7 +9,7 @@ import { loginAction } from "../action/loginAction";
 import ForgetPasswordBtn from "./forgetPasswordBtn";
 
 export default function LoginForm() {
-  const [state, action, pending] = useActionState(loginAction, {
+  const [state, action, isPending] = useActionState(loginAction, {
     email: "",
     password: "",
     error: null,
@@ -61,9 +61,9 @@ export default function LoginForm() {
         )}
       </div>
       <ForgetPasswordBtn />
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full" disabled={isPending}>
         <CTranslation
-          tKey={pending ? "signingInButton" : "signInButton"}
+          tKey={isPending ? "signingInButton" : "signInButton"}
           ns="login"
         />
       </Button>
