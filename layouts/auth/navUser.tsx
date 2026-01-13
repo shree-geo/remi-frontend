@@ -21,6 +21,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import LogoutModal from "./Logout";
 // import { auth } from "@/lib/auth-client";
 // import { redirect } from "next/navigation";
 
@@ -110,7 +111,7 @@ export async function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            {/* <LogoutModal /> */}
+            <LogoutModal />
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

@@ -2,11 +2,12 @@ import { ActionState } from "@/definitions/action.definition";
 import z from "zod";
 
 export async function catchActionError<
-  T extends Record<string, unknown> = Record<string, unknown>
+  T extends Record<string, unknown> | undefined = Record<string, unknown>
 >(cb: () => Promise<ActionState<T>>, state?: T): Promise<ActionState<T>> {
   try {
     return await cb();
   } catch (error) {
+    console.error("CATCH ERROR", error);
     if (error instanceof z.ZodError) {
       const errors = error.issues.reduce((acc, curr) => {
         acc[String(curr.path[0])] = curr.message || "";
