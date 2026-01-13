@@ -1,6 +1,5 @@
+import { nextApi } from "@/lib/axios";
 import { catchActionError } from "@/lib/catchActionError";
-import { accountCredentials } from "../constants/credentials";
-import { loginSchema } from "../definitions/login.definition";
 import { LoginActionState } from "../definitions/type";
 
 export async function loginAction(
@@ -12,28 +11,17 @@ export async function loginAction(
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    const validatedData = loginSchema.parse(rawData);
-    const data = validatedData;
+    // const validatedData = loginSchema.parse(rawData);
+    // const data = validatedData;
 
-    const isValidAccount = accountCredentials.some(
-      (acc) => acc.email === data.email && acc.password === data.password
-    );
+    const response = await nextApi.post("/api/auth/login", rawData);
+    console.log(response);
 
-    if (isValidAccount) {
-      return {
-        ...prevState,
-        error: null,
-        success: true,
-      };
-    } else {
-      return {
-        ...prevState,
-        error: {
-          email: "emailError",
-          password: "passwordError",
-        },
-        success: false,
-      };
-    }
+    return {
+      ...prevState,
+      data: response.data,
+      success: true,
+      message: "Login successful",
+    };
   });
 }
