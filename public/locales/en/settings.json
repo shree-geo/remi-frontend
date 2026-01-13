@@ -5,7 +5,8 @@
       "description": "Manage application users, roles, and permissions."
     },
     "form": {
-      "firstNameLabel": "First Name"
+      "firstNameLabel": "First Name",
+      "selectLabel": "Select the option"
     }
   }
 }

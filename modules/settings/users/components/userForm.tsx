@@ -32,7 +32,6 @@ export default function UserForm() {
                 tKey: "user.form.firstNameHelper",
                 ns: "settings",
               }}
-              id="first_name"
               name="first_name"
               required
             />
