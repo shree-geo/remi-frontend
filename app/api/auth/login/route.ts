@@ -10,14 +10,6 @@ export async function POST(request: NextRequest) {
     // Call external API for authentication
     const response = await api.post(`/auth/token/`, { email, password });
 
-    if (response.status !== 201) {
-      const error = await response.data?.error;
-      return NextResponse.json(
-        { error: error?.message || "Authentication failed" },
-        { status: response.status }
-      );
-    }
-
     const data = await response.data?.data;
 
     const { refresh, access } = data;
@@ -35,6 +27,7 @@ export async function POST(request: NextRequest) {
       refresh: refresh,
     });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

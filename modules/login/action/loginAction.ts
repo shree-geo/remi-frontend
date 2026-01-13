@@ -1,5 +1,6 @@
 import { nextApi } from "@/lib/axios";
 import { catchActionError } from "@/lib/catchActionError";
+import { loginSchema } from "../definitions/login.definition";
 import { LoginActionState } from "../definitions/type";
 
 export async function loginAction(
@@ -11,11 +12,10 @@ export async function loginAction(
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    // const validatedData = loginSchema.parse(rawData);
-    // const data = validatedData;
+    const validatedData = loginSchema.parse(rawData);
+    const data = validatedData;
 
-    const response = await nextApi.post("/api/auth/login", rawData);
-    console.log(response);
+    const response = await nextApi.post("/api/auth/login", data);
 
     return {
       ...prevState,
