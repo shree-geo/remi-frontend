@@ -22,33 +22,34 @@ export default function RecentCases() {
         <CardContent>
           <div className="space-y-3">
             {mockReturnees?.map((returnee) => (
-              <>
-                <div className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50">
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage src="" />
-                      <AvatarFallback>
-                        {" "}
-                        {`${returnee?.firstName?.[0] ?? ""}${
-                          returnee?.lastName?.[0] ?? ""
-                        }`}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="font-medium text-sm">{`${returnee?.firstName} ${returnee?.lastName}`}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {` ${returnee?.address?.district},${returnee?.address?.province}`}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge className="bg-orange-300">
-                      {returnee?.vulnerabilityLevel || "medium"}
-                    </Badge>
-                    <Badge className="bg-green-300">Completed</Badge>
+              <div
+                key={returnee?.id}
+                className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
+              >
+                <div className="flex items-center gap-3">
+                  <Avatar>
+                    <AvatarImage src="" />
+                    <AvatarFallback>
+                      {" "}
+                      {`${returnee?.firstName?.[0] ?? ""}${
+                        returnee?.lastName?.[0] ?? ""
+                      }`}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-medium text-sm">{`${returnee?.firstName} ${returnee?.lastName}`}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {` ${returnee?.address?.district},${returnee?.address?.province}`}
+                    </p>
                   </div>
                 </div>
-              </>
+                <div className="flex items-center gap-2">
+                  <Badge className="bg-orange-300">
+                    {returnee?.vulnerabilityLevel || "medium"}
+                  </Badge>
+                  <Badge className="bg-green-300">Completed</Badge>
+                </div>
+              </div>
             ))}
           </div>
         </CardContent>
