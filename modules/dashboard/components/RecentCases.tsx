@@ -2,17 +2,22 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { mockReturnees } from "../constant/data";
 
 export default function RecentCases() {
   return (
     <>
-      <Card className="lg:col-span-2">
+      <Card
+        className={cn(
+          "group relative lg:col-span-2 overflow-hidden rounded-xl border bg-background p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+        )}
+      >
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-base font-medium  ">
             Recent Cases
           </CardTitle>
-          <Button color="primary">Button</Button>
+          <Button className="bg-black">Button</Button>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">

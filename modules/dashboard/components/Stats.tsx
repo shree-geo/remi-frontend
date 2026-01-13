@@ -9,25 +9,25 @@ export default function State({ data: stats }: { data: DashboardStats }) {
         <StatCard
           title="Total Registered"
           value={stats.totalRegistered}
-          icon={<Users className="h-5 w-5" />}
+          icon={<Users color="green" className="h-5 w-5" />}
           description="All time registrations"
         />
         <StatCard
           title="Active Cases"
           value={stats.activeCases}
-          icon={<FolderOpen className="h-5 w-5" />}
+          icon={<FolderOpen color="green" className="h-5 w-5  " />}
           description="Currently being processed"
         />
         <StatCard
           title="Closed Cases"
           value={stats.closedCases}
-          icon={<CheckCircle className="h-5 w-5" />}
+          icon={<CheckCircle color="green" className="h-5 w-5" />}
           description="Successfully completed"
         />
         <StatCard
           title="Overdue Follow-ups"
           value={stats.overdueFollowUps}
-          icon={<AlertTriangle className="h-5 w-5" />}
+          icon={<AlertTriangle color="green" className="h-5 w-5" />}
           description="Require attention"
         />
       </div>

@@ -49,7 +49,7 @@ export const StatCard = ({
             </div>
           )}
         </div>
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-primary transition-transform duration-300 group-hover:scale-110">
           {icon}
         </div>
       </div>
