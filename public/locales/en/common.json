@@ -10,5 +10,14 @@
     "title": "Logout",
     "description": "Are you sure you want to logout?",
     "actionBtnText": "Log out"
+  },
+  "brand": {
+    "name": "RMIS Nepal",
+    "slogan": "Returnee Management Information System"
+  },
+  "footer": {
+    "ministry": " Ministry of Labour, Employment and Social Security • Nepal",
+    "developedBy": "Developed By:",
+    "supportedBy": "Supported By:"
   }
 }

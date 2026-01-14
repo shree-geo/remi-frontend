@@ -1,3 +1,4 @@
+import { nextApi } from "@/lib/axios";
 import { catchActionError } from "@/lib/catchActionError";
 import { forgotPasswordSchema } from "../definitions/forgetPassword.definition";
 import { ForgotPasswordActionState } from "../definitions/type";
@@ -12,10 +13,12 @@ export async function forgotPasswordAction(
     };
     const validatedData = forgotPasswordSchema.parse(rawData);
     const data = validatedData;
-    console.log(data);
+    const response = await nextApi.post("/api/forgot-password", data);
+    console.log(response);
 
     return {
       ...prevState,
+      message: response.data.message,
       error: {
         email: "emailError",
       },

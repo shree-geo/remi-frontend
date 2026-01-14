@@ -13,8 +13,7 @@ export default function Footer() {
           className="group transition-opacity hover:opacity-80"
         >
           <STranslation
-            tKey="footer"
-            ns="login"
+            tKey="footer.ministry"
             className="text-center text-xs font-semibold text-muted-foreground transition-colors group-hover:text-foreground"
           />
         </Link>
@@ -25,8 +24,7 @@ export default function Footer() {
       <div className="grid grid-cols-2 gap-8 px-4">
         <div className="flex flex-col items-center gap-3">
           <STranslation
-            tKey="supportedBy"
-            ns="login"
+            tKey="footer.supportedBy"
             className="text-xs font-semibold transition-colors text-muted-foreground hover:text-foreground"
           />
           <Link
@@ -48,8 +46,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center gap-3">
           <STranslation
-            tKey="developedBy"
-            ns="login"
+            tKey="footer.developedBy"
             className="text-xs font-semibold transition-colors text-muted-foreground hover:text-foreground"
           />
           <Link
