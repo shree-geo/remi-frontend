@@ -6,6 +6,11 @@
     },
     "form": {
       "firstNameLabel": "First Name",
+      "firstNameError": "First Name is required",
+      "firstNameHelper": "Please enter your first name",
+      "bioLabel": "Bio",
+      "bioError": "Bio is required",
+      "bioHelper": "Please enter your bio",
       "selectLabel": "Select the option"
     }
   }
