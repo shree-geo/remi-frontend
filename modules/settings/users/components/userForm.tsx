@@ -1,11 +1,26 @@
+"use client";
 import InputElement from "@/components/molecules/Form/Input";
-import TextAreaElement from "@/components/molecules/Form/textArea";
+import { SelectBox } from "@/components/molecules/Form/select";
+import CTranslation from "@/components/molecules/translations/CTranslation";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useActionState } from "react";
+import { userFormAction } from "../action/userFormAction";
+import { UserActionState } from "../definitions/type";
 
 export default function UserForm() {
+  const [state, action, isPending] = useActionState(userFormAction, {
+    full_name: "",
+    role: "user",
+    email: "",
+    password: "",
+    error: null,
+    message: "",
+    success: false,
+  } as UserActionState);
   return (
-    <form>
+    <form action={action}>
       <Card>
         <CardHeader>
           <CardTitle>
@@ -20,36 +35,51 @@ export default function UserForm() {
           >
             <InputElement
               label={{
-                tKey: "user.form.firstNameLabel",
+                tKey: "user.form.fullNameLabel",
                 ns: "settings",
               }}
-              error={{
-                tKey: "user.form.firstNameError",
-                ns: "settings",
-              }}
-              helper={{
-                tKey: "user.form.firstNameHelper",
-                ns: "settings",
-              }}
-              name="first_name"
+              name="full_name"
+              type="text"
               required
             />
-            <TextAreaElement
+            <SelectBox
               label={{
-                tKey: "user.form.bioLabel",
+                tKey: "user.form.roleLabel",
                 ns: "settings",
               }}
-              error={{
-                tKey: "user.form.bioError",
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "User" },
+              ]}
+            />
+            <InputElement
+              label={{
+                tKey: "user.form.emailLabel",
                 ns: "settings",
               }}
-              helper={{
-                tKey: "user.form.bioHelper",
-                ns: "settings",
-              }}
-              name="bio"
+              name="email"
+              type="email"
               required
             />
+            <InputElement
+              label={{
+                tKey: "user.form.passwordLabel",
+                ns: "settings",
+              }}
+              name="password"
+              type="password"
+              required
+            />
+            <Button type="submit" className="w-full" disabled={isPending}>
+              <CTranslation
+                tKey={
+                  isPending
+                    ? "user.form.submitButtonPending"
+                    : "user.form.submitButton"
+                }
+                ns="settings"
+              />
+            </Button>
           </div>
         </CardContent>
       </Card>
