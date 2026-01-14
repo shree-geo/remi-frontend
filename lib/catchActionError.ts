@@ -8,7 +8,6 @@ export async function catchActionError<
   try {
     return await cb();
   } catch (error) {
-    console.log("early error", error);
     if (error instanceof z.ZodError) {
       const errors = error.issues.reduce((acc, curr) => {
         acc[String(curr.path[0])] = curr.message || "";
