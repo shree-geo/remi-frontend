@@ -23,7 +23,13 @@ export async function BrandInfo() {
         >
           <Link href={brand.link}>
             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-slate-200">
-              <Image src={brand.logo} alt={brand.name} width={24} height={24} />
+              <Image
+                src={brand.logo}
+                alt={brand.name}
+                width={24}
+                height={24}
+                className="w-auto h-auto"
+              />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <STranslation
