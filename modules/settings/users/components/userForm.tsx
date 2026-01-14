@@ -23,9 +23,7 @@ export default function UserForm() {
     <form action={action}>
       <Card>
         <CardHeader>
-          <CardTitle>
-            <>User Form</>
-          </CardTitle>
+          <CardTitle>Example Form</CardTitle>
         </CardHeader>
         <CardContent>
           <div

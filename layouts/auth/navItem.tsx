@@ -13,6 +13,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 type NavItemProps = {
@@ -55,9 +56,9 @@ export function NavItem({ item }: NavItemProps) {
                     asChild
                     isActive={pathname === subItem.url}
                   >
-                    <a href={subItem.url}>
+                    <Link href={subItem.url}>
                       <span>{subItem.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
               ))}
@@ -72,10 +73,10 @@ export function NavItem({ item }: NavItemProps) {
   return (
     <SidebarMenuItem key={item.title}>
       <SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
-        <a href={item.url}>
+        <Link href={item.url}>
           {item.icon}
           <span>{item.title}</span>
-        </a>
+        </Link>
       </SidebarMenuButton>
     </SidebarMenuItem>
   );
