@@ -20,7 +20,6 @@ export async function catchActionError<
         success: false,
       } as ActionState<T>;
     } else if (error instanceof AxiosError) {
-      console.log("this error", error);
       return {
         ...state,
         error: error.response?.data,
