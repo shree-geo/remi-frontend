@@ -5,8 +5,8 @@ import { KeyRoundIcon, UserIcon, UserPenIcon } from "lucide-react";
 
 export default function ProfileLayout({ children }: LayoutProps<"/[lang]/me">) {
   return (
-    <Card>
-      <div className="col-span-4 ">
+    <Card className="grid grid-cols-12">
+      <div className="col-span-4">
         <SidebarGroup>
           <SidebarMenu>
             <NavItem
@@ -44,7 +44,7 @@ export default function ProfileLayout({ children }: LayoutProps<"/[lang]/me">) {
           </SidebarMenu>
         </SidebarGroup>
       </div>
-      <div className="col-span-8 ">{children}</div>
+      <div className="col-span-8">{children}</div>
     </Card>
   );
 }

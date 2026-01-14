@@ -5,6 +5,7 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
 } from "@/components/ui/sidebar";
+import _ from "lodash";
 import { allMenus } from "./data/navMenus";
 import { NavItem } from "./navItem";
 
@@ -26,7 +27,7 @@ export async function DynamicNav() {
       </SidebarGroup>
       {Object.entries(allMenus).map(([groupName, menus]) => (
         <SidebarGroup key={groupName}>
-          <SidebarGroupLabel>{groupName}</SidebarGroupLabel>
+          <SidebarGroupLabel>{_.upperFirst(groupName)}</SidebarGroupLabel>
           <SidebarMenu>
             {menus.map((item) => (
               <NavItem key={item.title} item={item} />
