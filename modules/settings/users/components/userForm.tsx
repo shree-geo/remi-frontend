@@ -125,7 +125,12 @@ export default function UserForm() {
             </Button>
           </div>
         </CardContent>
+        <CardFooter>
+          <CardAction>
+            <Button type="submit">Save</Button>
+          </CardAction>
+        </CardFooter>
       </Card>
-    </form>
+    </UserFormWrapper>
   );
 }

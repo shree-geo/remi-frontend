@@ -1,11 +1,21 @@
+import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
 import InputElement from "@/components/molecules/Form/Input";
 import TextAreaElement from "@/components/molecules/Form/textArea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import UserFormWrapper from "./formWrapper";
 
 export default function UserForm() {
   return (
-    <form>
+    <UserFormWrapper>
       <Card>
         <CardHeader>
           <CardTitle>Example Form</CardTitle>
@@ -21,28 +31,13 @@ export default function UserForm() {
                 tKey: "user.form.firstNameLabel",
                 ns: "settings",
               }}
-              error={{
-                tKey: "user.form.firstNameError",
-                ns: "settings",
-              }}
-              helper={{
-                tKey: "user.form.firstNameHelper",
-                ns: "settings",
-              }}
               name="first_name"
               required
             />
+            <DatePickerAD id="date" name="date" required />
             <TextAreaElement
               label={{
                 tKey: "user.form.bioLabel",
-                ns: "settings",
-              }}
-              error={{
-                tKey: "user.form.bioError",
-                ns: "settings",
-              }}
-              helper={{
-                tKey: "user.form.bioHelper",
                 ns: "settings",
               }}
               name="bio"
@@ -50,7 +45,12 @@ export default function UserForm() {
             />
           </div>
         </CardContent>
+        <CardFooter>
+          <CardAction>
+            <Button type="submit">Save</Button>
+          </CardAction>
+        </CardFooter>
       </Card>
-    </form>
+    </UserFormWrapper>
   );
 }
