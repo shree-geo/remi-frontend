@@ -13,35 +13,35 @@ export default function ForgetPasswordForm() {
           <CTranslation tKey="currentPasswordLabel" ns="change-password" />
         </Label>
         <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="user@example.com"
+          id="old_password"
+          name="old_password"
+          type="old_password"
+          placeholder="Enter current password"
           required
         />
         <Label htmlFor="newPassword">
           <CTranslation tKey="newPasswordLabel" ns="change-password" />
         </Label>
         <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="user@example.com"
+          id="new_password"
+          name="new_password"
+          type="new_password"
+          placeholder="Enter new password"
           required
         />
         <Label htmlFor="email">
-          <CTranslation tKey="newPasswordLabel" ns="change-password" />
+          <CTranslation tKey="reEnterNewPasswordLabel" ns="change-password" />
         </Label>
         <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="user@example.com"
+          id="renew_password"
+          name="renew_password"
+          type="renew_password"
+          placeholder="Enter New password again"
           required
         />
       </div>
       <Button type="submit" className="w-full my-2">
-        <CTranslation tKey="submitButton" ns="forgot-password" />
+        <CTranslation tKey="resetButton" ns="change-password" />
       </Button>
     </form>
   );
