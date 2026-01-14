@@ -1,0 +1,1356 @@
+{
+	"info": {
+		"_postman_id": "remi-mis-api-2026",
+		"name": "REMI MIS API - Complete Collection",
+		"description": "Comprehensive API collection for Returnee Management Information System (REMI MIS)\n\nVersion: 2.0\nLast Updated: January 14, 2026\n\nIncludes:\n- Authentication & Authorization\n- User Management\n- Role Management\n- Location Management (Province, District, Municipality)\n- Master Data Management\n\nBase URL: http://localhost:8009/api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8009/api",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('access_token', response.access);",
+									"    pm.collectionVariables.set('refresh_token', response.refresh);",
+									"    pm.collectionVariables.set('user_id', response.user.id);",
+									"    console.log('Access token saved:', response.access);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@remimis.gov.np\",\n    \"password\": \"Admin@123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "login", ""]
+						},
+						"description": "Login with email and password. Returns JWT access and refresh tokens.\n\nDefault credentials:\n- Email: admin@remimis.gov.np\n- Password: Admin@123"
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"newuser@example.com\",\n    \"password\": \"SecurePass@123\",\n    \"password_confirm\": \"SecurePass@123\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"employee_id\": \"EMP001\",\n    \"role\": \"role-uuid-here\",\n    \"profile\": {\n        \"office_level\": \"DISTRICT\",\n        \"province\": \"province-uuid\",\n        \"district\": \"district-uuid\",\n        \"phone_number\": \"9841234567\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "register", ""]
+						},
+						"description": "Register a new user account with profile information."
+					},
+					"response": []
+				},
+				{
+					"name": "Token Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('access_token', response.access);",
+									"    console.log('Access token refreshed');",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/token/refresh/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "token", "refresh", ""]
+						},
+						"description": "Refresh the access token using refresh token."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/logout/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "logout", ""]
+						},
+						"description": "Logout and blacklist the refresh token."
+					},
+					"response": []
+				},
+				{
+					"name": "Get JWT Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@remimis.gov.np\",\n    \"password\": \"Admin@123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/token/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "token", ""]
+						},
+						"description": "Alternative token obtain endpoint with custom claims."
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication endpoints for login, logout, registration, and token management."
+		},
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/?page=1&page_size=10",
+							"host": ["{{base_url}}"],
+							"path": ["users", ""],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								},
+								{
+									"key": "role",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "is_active",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "List all users filtered by geographic scope. Supports pagination, filtering, and search."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"trainer@example.com\",\n    \"password\": \"SecurePass@123\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"employee_id\": \"TRN001\",\n    \"role\": \"role-uuid-here\",\n    \"profile\": {\n        \"office_level\": \"PROVINCE\",\n        \"province\": \"province-uuid\",\n        \"phone_number\": \"9841234567\",\n        \"alternate_phone\": \"9851234567\",\n        \"address\": \"Kathmandu, Nepal\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": ["{{base_url}}"],
+							"path": ["users", ""]
+						},
+						"description": "Create a new user. Only accessible by Super Admin and User Managers."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}", ""]
+						},
+						"description": "Get detailed information about a specific user."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"John Updated\",\n    \"last_name\": \"Doe Updated\",\n    \"employee_id\": \"EMP001\",\n    \"role\": \"role-uuid-here\",\n    \"is_active\": true,\n    \"profile\": {\n        \"office_level\": \"DISTRICT\",\n        \"province\": \"province-uuid\",\n        \"district\": \"district-uuid\",\n        \"phone_number\": \"9841234567\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}", ""]
+						},
+						"description": "Update user information (full update)."
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"John\",\n    \"profile\": {\n        \"phone_number\": \"9841234568\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}", ""]
+						},
+						"description": "Partially update user information."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}", ""]
+						},
+						"description": "Soft delete a user (sets is_active to false)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User (Me)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/me/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "me", ""]
+						},
+						"description": "Get current authenticated user's profile."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Current User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Updated Name\",\n    \"last_name\": \"Updated Last Name\",\n    \"profile\": {\n        \"phone_number\": \"9841234567\",\n        \"address\": \"New Address\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/me/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "me", ""]
+						},
+						"description": "Update current user's own profile."
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"old_password\": \"Admin@123\",\n    \"new_password\": \"NewSecurePass@123\",\n    \"confirm_password\": \"NewSecurePass@123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/change_password/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "change_password", ""]
+						},
+						"description": "Change current user's password."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/statistics/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "statistics", ""]
+						},
+						"description": "Get user statistics (total, active, pending, by role). Requires Project Manager or above."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users Dropdown",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/dropdown/?role=",
+							"host": ["{{base_url}}"],
+							"path": ["users", "dropdown", ""],
+							"query": [
+								{
+									"key": "role",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get simplified user list for dropdown selection."
+					},
+					"response": []
+				},
+				{
+					"name": "Approve User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}/approve/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}", "approve", ""]
+						},
+						"description": "Approve a pending user registration."
+					},
+					"response": []
+				},
+				{
+					"name": "Reject User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}/reject/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{user_id}}", "reject", ""]
+						},
+						"description": "Reject a pending user registration."
+					},
+					"response": []
+				}
+			],
+			"description": "User management endpoints for CRUD operations, profile management, and user workflows."
+		},
+		{
+			"name": "Role Management",
+			"item": [
+				{
+					"name": "List Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/roles/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "roles", ""]
+						},
+						"description": "List all available roles in the system."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/roles/:role_id/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "roles", ":role_id", ""],
+						"variable": [
+								{
+									"key": "role_id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get detailed information about a specific role."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Custom Role\",\n    \"code\": \"CUSTOM_ROLE\",\n    \"description\": \"Custom role description\",\n    \"can_manage_users\": false,\n    \"can_approve_cases\": false,\n    \"can_assign_tasks\": false,\n    \"can_view_reports\": true,\n    \"can_export_data\": false,\n    \"can_manage_trainings\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/roles/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "roles", ""]
+						},
+						"description": "Create a new role. Only Super Admin can create roles."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Role Name\",\n    \"code\": \"UPDATED_CODE\",\n    \"description\": \"Updated description\",\n    \"can_manage_users\": true,\n    \"can_view_reports\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/roles/:role_id/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "roles", ":role_id", ""],
+							"variable": [
+								{
+									"key": "role_id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Update role information. Only Super Admin."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/roles/:role_id/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "roles", ":role_id", ""],
+							"variable": [
+								{
+									"key": "role_id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Delete a role. Only Super Admin."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Roles Dropdown",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/roles/dropdown/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "roles", "dropdown", ""]
+						},
+						"description": "Get simplified role list for dropdown selection."
+					},
+					"response": []
+				}
+			],
+			"description": "Role management endpoints for system roles and permissions."
+		},
+		{
+			"name": "Location Management",
+			"item": [
+				{
+					"name": "Provinces",
+					"item": [
+						{
+							"name": "List Provinces",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/provinces/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "provinces", ""]
+								},
+								"description": "List all provinces with districts count."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Province Details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/provinces/:province_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "provinces", ":province_id", ""],
+									"variable": [
+										{
+											"key": "province_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get province details with nested districts and municipalities."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Province",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Province Name\",\n    \"name_np\": \"प्रदेश नाम\",\n    \"code\": \"P1\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/locations/provinces/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "provinces", ""]
+								},
+								"description": "Create a new province. Super Admin only."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Province",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Updated Province Name\",\n    \"name_np\": \"अद्यावधिक प्रदेश नाम\",\n    \"code\": \"P1\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/locations/provinces/:province_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "provinces", ":province_id", ""],
+									"variable": [
+										{
+											"key": "province_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Update province information."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Province",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/provinces/:province_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "provinces", ":province_id", ""],
+									"variable": [
+										{
+											"key": "province_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Soft delete a province."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Provinces Dropdown",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/provinces/dropdown/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "provinces", "dropdown", ""]
+								},
+								"description": "Get simplified province list for dropdowns."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Province Statistics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/provinces/:province_id/statistics/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "provinces", ":province_id", "statistics", ""],
+									"variable": [
+										{
+											"key": "province_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get province statistics (districts, municipalities, users)."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Districts",
+					"item": [
+						{
+							"name": "List Districts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/districts/?province=",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "districts", ""],
+									"query": [
+										{
+											"key": "province",
+											"value": ""
+										}
+									]
+								},
+								"description": "List all districts, optionally filtered by province."
+							},
+							"response": []
+						},
+						{
+							"name": "Get District Details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/districts/:district_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "districts", ":district_id", ""],
+									"variable": [
+										{
+											"key": "district_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get district details with municipalities."
+							},
+							"response": []
+						},
+						{
+							"name": "Create District",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"province\": \"province-uuid\",\n    \"name\": \"District Name\",\n    \"name_np\": \"जिल्ला नाम\",\n    \"code\": \"D01\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/locations/districts/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "districts", ""]
+								},
+								"description": "Create a new district."
+							},
+							"response": []
+						},
+						{
+							"name": "Update District",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"province\": \"province-uuid\",\n    \"name\": \"Updated District\",\n    \"name_np\": \"अद्यावधिक जिल्ला\",\n    \"code\": \"D01\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/locations/districts/:district_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "districts", ":district_id", ""],
+									"variable": [
+										{
+											"key": "district_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Update district information."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete District",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/districts/:district_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "districts", ":district_id", ""],
+									"variable": [
+										{
+											"key": "district_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Soft delete a district."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Districts Dropdown",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/districts/dropdown/?province=",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "districts", "dropdown", ""],
+									"query": [
+										{
+											"key": "province",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get simplified district list for dropdowns."
+							},
+							"response": []
+						},
+						{
+							"name": "Get District Statistics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/districts/:district_id/statistics/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "districts", ":district_id", "statistics", ""],
+									"variable": [
+										{
+											"key": "district_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get district statistics."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Municipalities",
+					"item": [
+						{
+							"name": "List Municipalities",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/municipalities/?district=&type=",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "municipalities", ""],
+									"query": [
+										{
+											"key": "district",
+											"value": ""
+										},
+										{
+											"key": "type",
+											"value": "",
+											"description": "METROPOLITAN, SUB_METROPOLITAN, MUNICIPALITY, RURAL_MUNICIPALITY"
+										}
+									]
+								},
+								"description": "List all municipalities, optionally filtered by district or type."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Municipality Details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/municipalities/:municipality_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "municipalities", ":municipality_id", ""],
+									"variable": [
+										{
+											"key": "municipality_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get municipality details."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Municipality",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"district\": \"district-uuid\",\n    \"name\": \"Municipality Name\",\n    \"name_np\": \"नगरपालिका नाम\",\n    \"code\": \"M001\",\n    \"type\": \"MUNICIPALITY\",\n    \"wards_count\": 10\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/locations/municipalities/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "municipalities", ""]
+								},
+								"description": "Create a new municipality."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Municipality",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"district\": \"district-uuid\",\n    \"name\": \"Updated Municipality\",\n    \"name_np\": \"अद्यावधिक नगरपालिका\",\n    \"code\": \"M001\",\n    \"type\": \"MUNICIPALITY\",\n    \"wards_count\": 12\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/locations/municipalities/:municipality_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "municipalities", ":municipality_id", ""],
+									"variable": [
+										{
+											"key": "municipality_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Update municipality information."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Municipality",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/municipalities/:municipality_id/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "municipalities", ":municipality_id", ""],
+									"variable": [
+										{
+											"key": "municipality_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Soft delete a municipality."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Municipalities Dropdown",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/municipalities/dropdown/?district=",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "municipalities", "dropdown", ""],
+									"query": [
+										{
+											"key": "district",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get simplified municipality list for dropdowns."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Municipality Statistics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/locations/municipalities/:municipality_id/statistics/",
+									"host": ["{{base_url}}"],
+									"path": ["locations", "municipalities", ":municipality_id", "statistics", ""],
+									"variable": [
+										{
+											"key": "municipality_id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get municipality statistics."
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Location management endpoints for provinces, districts, and municipalities with geographic hierarchy."
+		},
+		{
+			"name": "Master Data",
+			"item": [
+				{
+					"name": "List Master Data (SuperAdmin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/master-data/?field_category=&is_active=true",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", ""],
+							"query": [
+								{
+									"key": "field_category",
+									"value": ""
+								},
+								{
+									"key": "is_active",
+									"value": "true"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "List all master data. Only Super Admin."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Master Data by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/master-data/by_category/?field_category=ethnicity&is_active=true",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", "by_category", ""],
+							"query": [
+								{
+									"key": "field_category",
+									"value": "ethnicity",
+									"description": "Required: ethnicity, religion, marital_status, education_level, skills, etc."
+								},
+								{
+									"key": "field_category_second",
+									"value": "",
+									"disabled": true,
+									"description": "Optional: for sub-categories"
+								},
+								{
+									"key": "is_active",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get master data by category. Available to all authenticated users. Use this for dropdowns.\n\nCategories:\n- ethnicity\n- religion\n- marital_status\n- education_level\n- occupation\n- skills (with sub-categories)\n- health_issue (with sub-categories)\n- migration_destination\n- migration_purpose\n- return_reason\n- financial_support_source\n- etc."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Master Data Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/master-data/:master_data_id/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", ":master_data_id", ""],
+							"variable": [
+								{
+									"key": "master_data_id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get specific master data details."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Master Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"field_category\": \"ethnicity\",\n    \"field_value\": \"Newar\",\n    \"field_value_np\": \"नेवार\",\n    \"field_code\": \"NEWAR\",\n    \"sort_order\": 10,\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/master-data/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", ""]
+						},
+						"description": "Create new master data. Super Admin only."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Master Data with Sub-category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"field_category\": \"skills\",\n    \"field_category_second\": \"Manufacturing/Mechanical/Technical\",\n    \"field_value\": \"Welding\",\n    \"field_value_np\": \"वेल्डिङ\",\n    \"field_code\": \"SKILL_WELDING\",\n    \"sort_order\": 10,\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/master-data/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", ""]
+						},
+						"description": "Create master data with sub-category (e.g., skills with specialization)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Master Data",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"field_category\": \"ethnicity\",\n    \"field_value\": \"Updated Value\",\n    \"field_value_np\": \"अद्यावधिक मान\",\n    \"field_code\": \"UPDATED_CODE\",\n    \"sort_order\": 15,\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/master-data/:master_data_id/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", ":master_data_id", ""],
+							"variable": [
+								{
+									"key": "master_data_id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Update master data. Super Admin only."
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update Master Data",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_active\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/master-data/:master_data_id/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", ":master_data_id", ""],
+							"variable": [
+								{
+									"key": "master_data_id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Partially update master data (e.g., deactivate)."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Master Data",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/master-data/:master_data_id/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", ":master_data_id", ""],
+							"variable": [
+								{
+									"key": "master_data_id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Soft delete master data. Super Admin only."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/master-data/categories/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", "categories", ""]
+						},
+						"description": "Get list of all available master data categories."
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Import Master Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"field_category\": \"ethnicity\",\n    \"items\": [\n        {\n            \"field_value\": \"Brahmin\",\n            \"field_value_np\": \"ब्राह्मण\",\n            \"field_code\": \"BRAHMIN\",\n            \"sort_order\": 1\n        },\n        {\n            \"field_value\": \"Chhetri\",\n            \"field_value_np\": \"क्षेत्री\",\n            \"field_code\": \"CHHETRI\",\n            \"sort_order\": 2\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/master-data/bulk_import/",
+							"host": ["{{base_url}}"],
+							"path": ["master-data", "bulk_import", ""]
+						},
+						"description": "Bulk import master data. Super Admin only."
+					},
+					"response": []
+				}
+			],
+			"description": "Master data management for dropdowns and reference data (ethnicities, religions, skills, etc.)."
+		},
+		{
+			"name": "System",
+			"item": [
+				{
+					"name": "API Root",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8009/",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8009",
+							"path": [""]
+						},
+						"description": "API root endpoint with system information."
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health/",
+							"host": ["{{base_url}}"],
+							"path": ["health", ""]
+						},
+						"description": "Health check endpoint."
+					},
+					"response": []
+				}
+			],
+			"description": "System-level endpoints."
+		}
+	]
+}
