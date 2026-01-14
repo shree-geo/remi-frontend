@@ -1,3 +1,4 @@
+"use client";
 import { TranslationDefinition } from "@/definitions/translation.definition";
 import { useT } from "@/i18n/client";
 import type { ComponentType, PropsWithChildren, ReactNode } from "react";

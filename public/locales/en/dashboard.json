@@ -1,0 +1,17 @@
+{
+  "stats": {
+    "totalRegistered": "Total Registered",
+    "cases": "Active Cases",
+    "closedCases": "Closed Cases",
+    "overdueFollowUps": "Overdue Follow-ups"
+  },
+  "vulnerability": {
+    "title": "Vulnerability Breakdown"
+  },
+  "recentCases": {
+    "title": "Recent Cases"
+  },
+  "quickActions": {
+    "title": "Quick Actions"
+  }
+}
