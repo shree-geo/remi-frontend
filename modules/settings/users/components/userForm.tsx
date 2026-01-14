@@ -1,12 +1,20 @@
-"use client";
-
+import { DatePickerAD } from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
 import InputElement from "@/components/molecules/Form/Input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import UserFormWrapper from "./formWrapper";
 
 export default function UserForm() {
   return (
-    <form>
+    <UserFormWrapper>
       <Card>
         <CardHeader>
           <CardTitle>
@@ -35,9 +43,15 @@ export default function UserForm() {
               name="first_name"
               required
             />
+            <DatePickerAD />
           </div>
         </CardContent>
+        <CardFooter>
+          <CardAction>
+            <Button type="submit">Save</Button>
+          </CardAction>
+        </CardFooter>
       </Card>
-    </form>
+    </UserFormWrapper>
   );
 }

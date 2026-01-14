@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { TranslationDefinition } from "@/definitions/translation.definition";
 import { AlertCircleIcon, InfoIcon } from "lucide-react";
 import { ComponentProps } from "react";
-import CTranslation from "../translations/CTranslation";
+import STranslation from "../translations/STranslation";
 
 interface InputElementProps extends ComponentProps<typeof InputGroupInput> {
   label: TranslationDefinition;
@@ -24,7 +24,7 @@ export default function InputElement(props: InputElementProps) {
         <InputGroupInput type={type} {...rest} />
         <InputGroupAddon align="inline-start">
           <Label>
-            <CTranslation {...label} />
+            <STranslation {...label} />
           </Label>
         </InputGroupAddon>
         {required && (
@@ -37,14 +37,14 @@ export default function InputElement(props: InputElementProps) {
       {error && (
         <div className="flex items-center space-x-2 px-2 pt-1 text-rose-600">
           <AlertCircleIcon className="h-4" />
-          {typeof error === "object" ? <CTranslation {...error} /> : error}
+          {typeof error === "object" ? <STranslation {...error} /> : error}
         </div>
       )}
 
       {helper && (
         <div className="flex items-center space-x-2 px-2 pt-1">
           <InfoIcon className="h-4" />
-          {typeof helper === "object" ? <CTranslation {...helper} /> : helper}
+          {typeof helper === "object" ? <STranslation {...helper} /> : helper}
         </div>
       )}
     </div>
