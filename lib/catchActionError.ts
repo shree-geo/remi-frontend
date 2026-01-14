@@ -4,24 +4,30 @@ import z from "zod";
 
 export async function catchActionError<
   T extends Record<string, unknown> | undefined = Record<string, unknown>
->(cb: () => Promise<ActionState<T>>, state?: T): Promise<ActionState<T>> {
+>(
+  cb: () => Promise<ActionState<T>>,
+  prevState?: T,
+  currentData?: T
+): Promise<ActionState<T>> {
   try {
     return await cb();
   } catch (error) {
+    console.error("Action Error caught:", error);
+    const baseState = { ...(prevState || {}), ...(currentData || {}) } as T;
     if (error instanceof z.ZodError) {
       const errors = error.issues.reduce((acc, curr) => {
         acc[String(curr.path[0])] = curr.message || "";
         return acc;
       }, {} as Record<string, string>);
       return {
-        ...state,
+        ...baseState,
         error: errors,
         message: "Validation error. Please check your input.",
         success: false,
       } as ActionState<T>;
     } else if (error instanceof AxiosError) {
       return {
-        ...state,
+        ...baseState,
         error: error.response?.data,
         message:
           error.response?.data?.message ||
@@ -30,7 +36,7 @@ export async function catchActionError<
       } as ActionState<T>;
     } else {
       return {
-        ...state,
+        ...baseState,
         error: {},
         message: "Something went wrong. Please try again.",
         success: false,

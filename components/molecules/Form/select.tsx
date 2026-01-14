@@ -16,13 +16,15 @@ interface SelectElementProps extends ComponentProps<typeof SelectGroup> {
   error?: TranslationDefinition | string;
   helper?: TranslationDefinition | string;
   options: { label: string; value: string }[];
+  name?: string;
+  defaultValue?: string;
 }
 
 export function SelectBox(props: SelectElementProps) {
-  const { label, helper, error, options } = props;
+  const { label, helper, error, options, name, defaultValue } = props;
   return (
     <div>
-      <Select>
+      <Select name={name} defaultValue={defaultValue}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder={<CTranslation {...label} />} />
         </SelectTrigger>

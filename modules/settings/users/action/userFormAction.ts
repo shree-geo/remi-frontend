@@ -1,4 +1,3 @@
-import { nextApi } from "@/lib/axios";
 import { catchActionError } from "@/lib/catchActionError";
 import { UserActionState } from "../definitions/type";
 import { userSchema } from "../definitions/user.definitions";
@@ -16,8 +15,9 @@ export async function userFormAction(
     };
     const validatedData = userSchema.parse(rawData);
     const data = validatedData;
+    console.log(data);
 
-    await nextApi.post("/api/settings/users", data);
+    // await nextApi.post("/api/settings/users", data);
 
     return {
       ...prevState,

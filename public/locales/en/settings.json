@@ -5,6 +5,7 @@
       "description": "Manage application users, roles, and permissions."
     },
     "form": {
+      "title": "User Form",
       "fullNameLabel": "Full Name",
       "fullNameError": "Full Name is required",
       "emailLabel": "Email",
@@ -15,6 +16,7 @@
       "roleError": "Role is required",
       "submitButton": "Create User",
       "submitButtonPending": "Creating User..."
-    }
+    },
+    "generatePassword": "Generate Password"
   }
 }
