@@ -32,29 +32,10 @@ export default function UserForm() {
                 tKey: "user.form.firstNameLabel",
                 ns: "settings",
               }}
-              error={{
-                tKey: "user.form.firstNameError",
-                ns: "settings",
-              }}
-              helper={{
-                tKey: "user.form.firstNameHelper",
-                ns: "settings",
-              }}
               name="first_name"
               required
             />
-            <DatePickerAD
-              id="date"
-              name="date"
-              error={{
-                tKey: "user.form.firstNameError",
-                ns: "settings",
-              }}
-              helper={{
-                tKey: "user.form.firstNameHelper",
-                ns: "settings",
-              }}
-            />
+            <DatePickerAD id="date" name="date" required />
           </div>
         </CardContent>
         <CardFooter>

@@ -25,13 +25,11 @@ export default function InputElement(props: InputElementProps) {
         <InputGroupAddon align="inline-start">
           <Label>
             <STranslation {...label} />
+            {required && (
+              <InputGroupText className="text-rose-600">*</InputGroupText>
+            )}
           </Label>
         </InputGroupAddon>
-        {required && (
-          <InputGroupAddon align="inline-end">
-            <InputGroupText className="text-rose-600">*</InputGroupText>
-          </InputGroupAddon>
-        )}
       </InputGroup>
       <FormElementBottom error={error} helper={helper} />
     </div>

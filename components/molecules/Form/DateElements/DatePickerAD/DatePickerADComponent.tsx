@@ -95,7 +95,17 @@ export function DatePickerADComponent({
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? format(date, "PPP") : <span>{placeholder}</span>}
+            <p className="grow">
+              {date ? (
+                format(date, "PPP")
+              ) : (
+                <span>
+                  {placeholder}
+                  {required && <span className="text-rose-600">*</span>}
+                </span>
+              )}
+            </p>
+            <p>AD</p>
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
