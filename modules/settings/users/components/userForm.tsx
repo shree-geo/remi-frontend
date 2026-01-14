@@ -40,7 +40,6 @@ export default function UserForm() {
               name="full_name"
               type="text"
               required
-              defaultValue={state.full_name}
               error={
                 state.error?.full_name
                   ? {
@@ -56,7 +55,6 @@ export default function UserForm() {
                 tKey: "user.form.roleLabel",
                 ns: "settings",
               }}
-              defaultValue={state.role}
               error={
                 state.error?.role
                   ? {
@@ -78,7 +76,6 @@ export default function UserForm() {
               name="email"
               type="email"
               required
-              defaultValue={state.email}
               error={
                 state.error?.email
                   ? {
