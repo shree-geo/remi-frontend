@@ -1,3 +1,4 @@
+import Text from "@/components/molecules/text";
 import Title from "@/components/molecules/title";
 import STranslation from "@/components/molecules/translations/STranslation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -43,9 +44,9 @@ export default function RecentCases() {
                     </Avatar>
 
                     <div>
-                      <p className="text-sm font-medium">
+                      <Text size="small">
                         {returnee.firstName} {returnee.lastName}
-                      </p>
+                      </Text>
                       <p className="text-xs text-muted-foreground">
                         {returnee.address?.district},{" "}
                         {returnee.address?.province}

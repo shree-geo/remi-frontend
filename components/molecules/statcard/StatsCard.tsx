@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ComponentProps, ReactNode } from "react";
+import Text from "../text";
+import Title from "../title";
 import STranslation from "../translations/STranslation";
 interface StatsCardProps {
   title: ComponentProps<typeof STranslation>;
@@ -29,17 +31,18 @@ export const StatsCard = ({
         className
       )}
     >
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-linear-gradient-to-br from-primary/5 via-transparent to-primary/10" />
 
       <div className="relative flex items-start justify-between">
         <div className="space-y-1">
-          <p className="text-sm font-medium text-muted-foreground">
+          <Text slot="p">
             <STranslation {...title} slot="p" />
-          </p>
-
-          <p className="text-3xl font-bold tracking-tight">{value}</p>
+          </Text>
+          <Title size="h3">{value}</Title>
           {description && (
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <Text size="small" className="">
+              {description}
+            </Text>
           )}
 
           {trend && (
