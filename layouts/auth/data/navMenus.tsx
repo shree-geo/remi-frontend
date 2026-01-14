@@ -1,4 +1,4 @@
-import { Users } from "lucide-react";
+import { BoxesIcon, Users } from "lucide-react";
 
 interface IMenu {
   title: string;
@@ -17,11 +17,12 @@ export const allMenus: Record<string, Array<IMenu>> = {
       isCollapsible: false,
     },
   ],
-  user: [
+
+  example: [
     {
-      title: "User Profile",
-      icon: <Users />,
-      url: "/settings/userProfile",
+      title: "Example",
+      url: "/example",
+      icon: <BoxesIcon />,
       isCollapsible: false,
     },
   ],

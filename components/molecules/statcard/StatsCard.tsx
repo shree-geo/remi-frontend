@@ -35,9 +35,7 @@ export const StatsCard = ({
 
       <div className="relative flex items-start justify-between">
         <div className="space-y-1">
-          <Text slot="p">
-            <STranslation {...title} slot="p" />
-          </Text>
+          <STranslation slot={Text} {...title} />
           <Title size="h3">{value}</Title>
           {description && (
             <Text size="small" className="">

@@ -1,6 +1,4 @@
 {
-  "headerTitle": "RMIS Nepal",
-  "headerDescription": "Returnee Management Information System",
   "title": "Sign In to Your Account",
   "description": "Enter your credentials to access the system.",
   "emailLabel": "Email Address",
@@ -9,7 +7,5 @@
   "signingInButton": "Signing In...",
   "emailError": "Please enter a valid email address.",
   "passwordError": "Please enter a valid password.",
-  "footer": " Ministry of Labour, Employment and Social Security • Nepal",
-  "developedBy": "Developed By:",
-  "supportedBy": "Supported By:"
+  "forgotPassword": "Forgot Password?"
 }

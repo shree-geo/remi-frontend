@@ -12,15 +12,10 @@ export default function Header() {
           height={100}
           className="h-12 w-12"
         />
-        <STranslation
-          tKey="headerTitle"
-          ns="login"
-          className="text-2xl font-bold"
-        />
+        <STranslation tKey="brand.name" className="text-2xl font-bold" />
       </div>
       <STranslation
-        tKey="headerDescription"
-        ns="login"
+        tKey="brand.slogan"
         className="mt-2 text-sm text-muted-foreground"
       />
     </div>
