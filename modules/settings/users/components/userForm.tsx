@@ -1,4 +1,4 @@
-import { DatePickerAD } from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
+import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
 import InputElement from "@/components/molecules/Form/Input";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,7 +43,18 @@ export default function UserForm() {
               name="first_name"
               required
             />
-            <DatePickerAD />
+            <DatePickerAD
+              id="date"
+              name="date"
+              error={{
+                tKey: "user.form.firstNameError",
+                ns: "settings",
+              }}
+              helper={{
+                tKey: "user.form.firstNameHelper",
+                ns: "settings",
+              }}
+            />
           </div>
         </CardContent>
         <CardFooter>
