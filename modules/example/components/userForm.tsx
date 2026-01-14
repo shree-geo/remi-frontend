@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
+=======
+import ComboboxElement from "@/components/molecules/Form/combobox";
+>>>>>>> Stashed changes
 import InputElement from "@/components/molecules/Form/Input";
 import TextAreaElement from "@/components/molecules/Form/textArea";
 import { Button } from "@/components/ui/button";
@@ -42,6 +46,16 @@ export default function UserForm() {
               }}
               name="bio"
               required
+            />
+            <ComboboxElement
+              name="fruit"
+              label="Favorite Fruit"
+              placeholder="Choose a fruit..."
+              options={[
+                { label: "Apple", value: "apple" },
+                { label: "Banana", value: "banana" },
+                { label: "Cherry", value: "cherry" },
+              ]}
             />
           </div>
         </CardContent>
