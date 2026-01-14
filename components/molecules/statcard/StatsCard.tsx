@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
+import STranslation from "../translations/STranslation";
+interface StatsCardProps {
+  title: ComponentProps<typeof STranslation>;
 
-interface StatCardProps {
-  title: string;
   value: string | number;
   icon: ReactNode;
   description?: string;
@@ -13,14 +14,14 @@ interface StatCardProps {
   className?: string;
 }
 
-export const StatCard = ({
+export const StatsCard = ({
   title,
   value,
   icon,
   description,
   trend,
   className,
-}: StatCardProps) => {
+}: StatsCardProps) => {
   return (
     <div
       className={cn(
@@ -32,7 +33,9 @@ export const StatCard = ({
 
       <div className="relative flex items-start justify-between">
         <div className="space-y-1">
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
+          <p className="text-sm font-medium text-muted-foreground">
+            <STranslation {...title} slot="p" />
+          </p>
 
           <p className="text-3xl font-bold tracking-tight">{value}</p>
           {description && (

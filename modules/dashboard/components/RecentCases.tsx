@@ -1,3 +1,5 @@
+import Title from "@/components/molecules/title";
+import STranslation from "@/components/molecules/translations/STranslation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,41 +17,60 @@ export default function RecentCases() {
       >
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-base font-medium  ">
-            Recent Cases
+            <Title size="h4">
+              <STranslation tKey="recentCases.title" ns="dashboard" />
+            </Title>
           </CardTitle>
           <Button className="bg-black">Button</Button>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
             {mockReturnees?.map((returnee) => (
-              <div
-                key={returnee?.id}
-                className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
+              <Card
+                key={returnee.id}
+                className="transition-colors hover:bg-muted/50"
               >
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage src="" />
-                    <AvatarFallback>
-                      {" "}
-                      {`${returnee?.firstName?.[0] ?? ""}${
-                        returnee?.lastName?.[0] ?? ""
-                      }`}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-medium text-sm">{`${returnee?.firstName} ${returnee?.lastName}`}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {` ${returnee?.address?.district},${returnee?.address?.province}`}
-                    </p>
+                <CardContent className="flex  justify-between ">
+                  {/* Left side */}
+                  <div className="flex items-center gap-3">
+                    <Avatar>
+                      <AvatarImage src="" />
+                      <AvatarFallback>
+                        {`${returnee?.firstName?.[0] ?? ""}${
+                          returnee?.lastName?.[0] ?? ""
+                        }`}
+                      </AvatarFallback>
+                    </Avatar>
+
+                    <div>
+                      <p className="text-sm font-medium">
+                        {returnee.firstName} {returnee.lastName}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {returnee.address?.district},{" "}
+                        {returnee.address?.province}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Badge className="bg-orange-300">
-                    {returnee?.vulnerabilityLevel || "medium"}
-                  </Badge>
-                  <Badge className="bg-green-300">Completed</Badge>
-                </div>
-              </div>
+
+                  {/* Right side */}
+                  <div className="flex items-center gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="bg-orange-200 text-orange-900"
+                    >
+                      {returnee.vulnerabilityLevel || "Medium"}
+                    </Badge>
+
+                    <Badge
+                      variant="secondary"
+                      className="bg-green-200 text-green-900"
+                    >
+                      Completed
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </CardContent>

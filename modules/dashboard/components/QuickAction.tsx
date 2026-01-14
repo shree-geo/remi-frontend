@@ -1,3 +1,5 @@
+import Title from "@/components/molecules/title";
+import STranslation from "@/components/molecules/translations/STranslation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -11,7 +13,11 @@ export default function QuickAction() {
         )}
       >
         <CardHeader>
-          <CardTitle className="text-base font-medium">Quick Actions</CardTitle>
+          <CardTitle className="text-base font-medium">
+            <Title size="h4">
+              <STranslation tKey="quickActions.title" ns="dashboard" />
+            </Title>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3">
