@@ -9,7 +9,7 @@ import { useActionState } from "react";
 import { forgotPasswordAction } from "../action/forgetPasswordAction";
 
 export default function ForgetPasswordForm() {
-  const [state, action, pending] = useActionState(forgotPasswordAction, {
+  const [state, action, isPending] = useActionState(forgotPasswordAction, {
     email: "",
     error: null,
     message: "",
@@ -38,7 +38,7 @@ export default function ForgetPasswordForm() {
           <p className="text-red-500">{state.error.email}</p>
         )}
       </div>
-      <Button type="submit" className="w-full my-2" disabled={pending}>
+      <Button type="submit" className="w-full my-2" disabled={isPending}>
         <CTranslation tKey="submitButton" ns="forgot-password" />
       </Button>
     </form>

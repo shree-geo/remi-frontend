@@ -18,9 +18,7 @@ export default function UserForm() {
     <UserFormWrapper>
       <Card>
         <CardHeader>
-          <CardTitle>
-            <>User Form</>
-          </CardTitle>
+          <CardTitle>Example Form</CardTitle>
         </CardHeader>
         <CardContent>
           <div
