@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import ForgetPasswordForm from "../forgot-password/components/forgetPasswordForm";
+import ChangePasswordForm from "./components/changePasswordForm";
 
 const ChangePassword = () => {
   return (
@@ -29,7 +29,7 @@ const ChangePassword = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ForgetPasswordForm />
+          <ChangePasswordForm />
         </CardContent>
       </Card>
     </>
