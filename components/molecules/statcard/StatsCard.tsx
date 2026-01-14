@@ -1,8 +1,11 @@
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
+import Text from "../text";
+import Title from "../title";
+import STranslation from "../translations/STranslation";
+interface StatsCardProps {
+  title: ComponentProps<typeof STranslation>;
 
-interface StatCardProps {
-  title: string;
   value: string | number;
   icon: ReactNode;
   description?: string;
@@ -13,14 +16,14 @@ interface StatCardProps {
   className?: string;
 }
 
-export const StatCard = ({
+export const StatsCard = ({
   title,
   value,
   icon,
   description,
   trend,
   className,
-}: StatCardProps) => {
+}: StatsCardProps) => {
   return (
     <div
       className={cn(
@@ -28,15 +31,18 @@ export const StatCard = ({
         className
       )}
     >
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-linear-gradient-to-br from-primary/5 via-transparent to-primary/10" />
 
       <div className="relative flex items-start justify-between">
         <div className="space-y-1">
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
-
-          <p className="text-3xl font-bold tracking-tight">{value}</p>
+          <Text slot="p">
+            <STranslation {...title} slot="p" />
+          </Text>
+          <Title size="h3">{value}</Title>
           {description && (
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <Text size="small" className="">
+              {description}
+            </Text>
           )}
 
           {trend && (

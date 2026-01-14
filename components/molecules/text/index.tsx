@@ -16,7 +16,7 @@ export default function Text(props: TextProps) {
     p: "leading-7 [&:not(:first-child)]:mt-6",
     lead: "text-muted-foreground text-xl",
     large: "text-lg font-semibold",
-    small: "text-sm leading-none font-medium",
+    small: "text-sm leading-none",
   };
   return (
     <Component className={cn(variantClass[size], className)} {...rest}>
