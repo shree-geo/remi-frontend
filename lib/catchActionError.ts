@@ -1,10 +1,9 @@
-import { ActionState } from "@/definitions/action.definition";
 import { AxiosError } from "axios";
 import z from "zod";
 
 export async function catchActionError<
   T extends Record<string, unknown> | undefined = Record<string, unknown>
->(cb: () => Promise<ActionState<T>>, state?: T): Promise<ActionState<T>> {
+>(cb: () => Promise<T>, state?: T): Promise<T> {
   try {
     return await cb();
   } catch (error) {
@@ -18,7 +17,7 @@ export async function catchActionError<
         error: errors,
         message: "Validation error. Please check your input.",
         success: false,
-      } as ActionState<T>;
+      } as unknown as T;
     } else if (error instanceof AxiosError) {
       return {
         ...state,
@@ -27,14 +26,14 @@ export async function catchActionError<
           error.response?.data?.message ||
           "Something went wrong. Please try again.",
         success: false,
-      } as ActionState<T>;
+      } as unknown as T;
     } else {
       return {
         ...state,
         error: {},
         message: "Something went wrong. Please try again.",
         success: false,
-      } as ActionState<T>;
+      } as unknown as T;
     }
   }
 }
