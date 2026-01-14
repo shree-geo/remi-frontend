@@ -5,8 +5,8 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
 } from "@/components/ui/sidebar";
-import { NavItem } from "./navItem";
 import { allMenus } from "./data/navMenus";
+import { NavItem } from "./navItem";
 
 export async function DynamicNav() {
   return (
