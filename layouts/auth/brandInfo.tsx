@@ -1,3 +1,4 @@
+import STranslation from "@/components/molecules/translations/STranslation";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -8,9 +9,9 @@ import Link from "next/link";
 
 export async function BrandInfo() {
   const brand = {
-    name: "Next.js Template",
-    logo: "/globe.svg",
-    slogan: "Build your next app with Next.js",
+    name: "RMIS Nepal",
+    logo: "/gov-logo.png",
+    link: "/dashboard",
   };
   return (
     <SidebarMenu>
@@ -20,13 +21,16 @@ export async function BrandInfo() {
           className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           asChild
         >
-          <Link href="/">
+          <Link href={brand.link}>
             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-slate-200">
               <Image src={brand.logo} alt={brand.name} width={24} height={24} />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">{brand.name}</span>
-              <span className="truncate text-xs">{brand.slogan}</span>
+              <STranslation
+                tKey="brand.name"
+                className="truncate font-semibold"
+              />
+              <STranslation tKey="brand.slogan" className="truncate text-xs" />
             </div>
           </Link>
         </SidebarMenuButton>
