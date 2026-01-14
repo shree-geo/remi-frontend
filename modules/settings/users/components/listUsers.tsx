@@ -50,8 +50,7 @@ export default async function ListUsers(props: ListUsersProps) {
       <List<User>
         headerProps={{
           title: {
-            tKey: "user.list.title",
-            ns: "settings",
+            tKey: "Example",
           },
         }}
         tableProps={{
