@@ -17,4 +17,12 @@ export const allMenus: Record<string, Array<IMenu>> = {
       isCollapsible: false,
     },
   ],
+  user: [
+    {
+      title: "User Profile",
+      icon: <Users />,
+      url: "/settings/userProfile",
+      isCollapsible: false,
+    },
+  ],
 };

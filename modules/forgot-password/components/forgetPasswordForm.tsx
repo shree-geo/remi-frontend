@@ -4,28 +4,13 @@ import CTranslation from "@/components/molecules/translations/CTranslation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { redirect } from "next/navigation";
-import { useActionState } from "react";
-import { forgotPasswordAction } from "../action/forgetPasswordAction";
 
 export default function ForgetPasswordForm() {
-  const [state, action, pending] = useActionState(forgotPasswordAction, {
-    email: "",
-    error: null,
-    message: "",
-    success: false,
-  });
-
-  const email = state.email;
-  console.log(email);
-  if (state.success) {
-    redirect("/");
-  }
   return (
-    <form action={action}>
+    <form>
       <div className="space-y-2">
-        <Label htmlFor="email">
-          <CTranslation tKey="emailLabel" ns="forgot-password" />
+        <Label htmlFor="currentPassword">
+          <CTranslation tKey="currentPasswordLabel" ns="change-password" />
         </Label>
         <Input
           id="email"
@@ -34,11 +19,28 @@ export default function ForgetPasswordForm() {
           placeholder="user@example.com"
           required
         />
-        {state.error?.email && (
-          <p className="text-red-500">{state.error.email}</p>
-        )}
+        <Label htmlFor="newPassword">
+          <CTranslation tKey="newPasswordLabel" ns="change-password" />
+        </Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="user@example.com"
+          required
+        />
+        <Label htmlFor="email">
+          <CTranslation tKey="newPasswordLabel" ns="change-password" />
+        </Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="user@example.com"
+          required
+        />
       </div>
-      <Button type="submit" className="w-full my-2" disabled={pending}>
+      <Button type="submit" className="w-full my-2">
         <CTranslation tKey="submitButton" ns="forgot-password" />
       </Button>
     </form>
