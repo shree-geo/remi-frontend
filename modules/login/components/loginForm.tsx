@@ -6,9 +6,10 @@ import { Label } from "@/components/ui/label";
 import { redirect } from "next/navigation";
 import { useActionState } from "react";
 import { loginAction } from "../action/loginAction";
+import ForgetPasswordBtn from "./forgetPasswordBtn";
 
 export default function LoginForm() {
-  const [state, action, pending] = useActionState(loginAction, {
+  const [state, action, isPending] = useActionState(loginAction, {
     email: "",
     password: "",
     error: null,
@@ -32,7 +33,7 @@ export default function LoginForm() {
           id="email"
           name="email"
           type="email"
-          placeholder="you@rmis.gov.np"
+          placeholder="user@example.com"
           required
         />
         {state.error?.email && (
@@ -59,10 +60,10 @@ export default function LoginForm() {
           </p>
         )}
       </div>
-
-      <Button type="submit" className="w-full">
+      <ForgetPasswordBtn />
+      <Button type="submit" className="w-full" disabled={isPending}>
         <CTranslation
-          tKey={pending ? "signingInButton" : "signInButton"}
+          tKey={isPending ? "signingInButton" : "signInButton"}
           ns="login"
         />
       </Button>

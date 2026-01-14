@@ -8,9 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import LoginForm from "@modules/login/components/loginForm";
+import ForgetPasswordForm from "./forgetPasswordForm";
 
-const Login = () => {
+const ForgotPassword = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4">
       <div className="w-full max-w-md space-y-6">
@@ -18,14 +18,22 @@ const Login = () => {
         <Card>
           <CardHeader>
             <CardTitle>
-              <STranslation tKey="title" ns="login" />
+              <STranslation
+                tKey="title"
+                ns="forgot-password"
+                className="text-xl"
+              />
             </CardTitle>
             <CardDescription>
-              <STranslation tKey="description" ns="login" />
+              <STranslation
+                tKey="description"
+                ns="forgot-password"
+                className="text-xs"
+              />
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <LoginForm />
+            <ForgetPasswordForm />
           </CardContent>
         </Card>
         <Footer />
@@ -34,4 +42,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
