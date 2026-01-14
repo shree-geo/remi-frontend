@@ -1,5 +1,6 @@
 import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
 import InputElement from "@/components/molecules/Form/Input";
+import TextAreaElement from "@/components/molecules/Form/textArea";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -36,6 +37,14 @@ export default function UserForm() {
               required
             />
             <DatePickerAD id="date" name="date" required />
+            <TextAreaElement
+              label={{
+                tKey: "user.form.bioLabel",
+                ns: "settings",
+              }}
+              name="bio"
+              required
+            />
           </div>
         </CardContent>
         <CardFooter>
