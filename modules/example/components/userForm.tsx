@@ -1,3 +1,4 @@
+import ComboboxElement from "@/components/molecules/Form/comboboxElement";
 import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
 import InputElement from "@/components/molecules/Form/Input";
 import TextAreaElement from "@/components/molecules/Form/textArea";
@@ -11,11 +12,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import UserFormWrapper from "./formWrapper";
+import ExampleFormWrapper from "./formWrapper";
 
 export default function UserForm() {
   return (
-    <UserFormWrapper>
+    <ExampleFormWrapper>
       <Card>
         <CardHeader>
           <CardTitle>Example Form</CardTitle>
@@ -43,6 +44,20 @@ export default function UserForm() {
               name="bio"
               required
             />
+            <ComboboxElement
+              id="fruit"
+              name="fruit"
+              label={{
+                tKey: "user.form.fruitLabel",
+                ns: "settings",
+              }}
+              placeholder="Choose a fruit..."
+              options={[
+                { label: "Apple", value: "apple" },
+                { label: "Banana", value: "banana" },
+                { label: "Cherry", value: "cherry" },
+              ]}
+            />
           </div>
         </CardContent>
         <CardFooter>
@@ -51,6 +66,6 @@ export default function UserForm() {
           </CardAction>
         </CardFooter>
       </Card>
-    </UserFormWrapper>
+    </ExampleFormWrapper>
   );
 }

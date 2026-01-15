@@ -1,9 +1,9 @@
 "use client";
 
-import { PropsWithChildren, useActionState } from "react";
-import createUserAction from "../actions/createUserAction";
+import { type PropsWithChildren, useActionState } from "react";
+import createExampleAction from "../actions/createExampleAction";
 
-export default function UserFormWrapper({ children }: PropsWithChildren) {
-  const [, action] = useActionState(createUserAction, undefined);
+export default function ExampleFormWrapper({ children }: PropsWithChildren) {
+  const [, action] = useActionState(createExampleAction, undefined);
   return <form action={action}>{children}</form>;
 }
