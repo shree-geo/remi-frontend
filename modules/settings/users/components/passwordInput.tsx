@@ -6,9 +6,10 @@ import PasswordGenerator from "./passwordGenerator";
 
 const PasswordInput = () => {
   const [password, setPassword] = useState("");
+
   return (
-    <div className="flex gap-2 items-start">
-      <div className="flex-1">
+    <div className="grid gap-2 sm:grid-cols-1 xl:grid-cols-[2fr_1fr]">
+      <div className="w-full">
         <PasswordInputElement
           label={{
             tKey: "user.form.passwordLabel",
@@ -25,8 +26,9 @@ const PasswordInput = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <div className="mt-1">
-        <PasswordGenerator onGenerate={setPassword} />
+
+      <div className="w-full flex justify-start md:justify-end items-center mb-6">
+        <PasswordGenerator onGenerate={setPassword} password={password} />
       </div>
     </div>
   );

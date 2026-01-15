@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
 import { TranslationDefinition } from "@/definitions/translation.definition";
-import { EyeClosedIcon, EyeIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { ComponentProps, useState } from "react";
 import CTranslation from "../translations/CTranslation";
 import FormElementBottom from "./FormElementBottom";
@@ -45,9 +45,9 @@ export default function PasswordInputElement(props: InputElementProps) {
           <button
             type="button"
             onClick={() => setShowPassword((v) => !v)}
-            className="m-2 text-muted-foreground hover:text-foreground"
+            className="m-2 w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
           >
-            {showPassword ? <EyeClosedIcon /> : <EyeIcon />}
+            {showPassword ? <EyeIcon size={16} /> : <EyeOffIcon size={16} />}
           </button>
         )}
       </InputGroup>
