@@ -1,33 +1,19 @@
-"use client";
 import InputElement from "@/components/molecules/Form/Input";
 import { SelectBox } from "@/components/molecules/Form/select";
-import CTranslation from "@/components/molecules/translations/CTranslation";
+import STranslation from "@/components/molecules/translations/STranslation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useActionState, useState } from "react";
-import { userFormAction } from "../action/userFormAction";
-import { UserActionState } from "../definitions/type";
-import PasswordGenerator from "./passwordGenerator";
+import UserFormWrapper from "./formWrapper";
+import PasswordInput from "./passwordInput";
 
 export default function UserForm() {
-  const [password, setPassword] = useState("");
-  const [state, action, isPending] = useActionState(userFormAction, {
-    full_name: "",
-    role: "user",
-    email: "",
-    password: "",
-    error: null,
-    message: "",
-    success: false,
-  } as UserActionState);
-
   return (
-    <form action={action}>
+    <UserFormWrapper>
       <Card>
         <CardHeader>
           <CardTitle>
-            <CTranslation tKey="user.form.title" ns="settings" />
+            <STranslation tKey="user.form.title" ns="settings" />
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -40,14 +26,10 @@ export default function UserForm() {
               name="full_name"
               type="text"
               required
-              error={
-                state.error?.full_name
-                  ? {
-                      tKey: "user.form.fullNameError",
-                      ns: "settings",
-                    }
-                  : undefined
-              }
+              error={{
+                tKey: "user.form.fullNameError",
+                ns: "settings",
+              }}
             />
             <SelectBox
               name="role"
@@ -55,14 +37,10 @@ export default function UserForm() {
                 tKey: "user.form.roleLabel",
                 ns: "settings",
               }}
-              error={
-                state.error?.role
-                  ? {
-                      tKey: "user.form.roleError",
-                      ns: "settings",
-                    }
-                  : undefined
-              }
+              error={{
+                tKey: "user.form.roleError",
+                ns: "settings",
+              }}
               options={[
                 { value: "admin", label: "Admin" },
                 { value: "user", label: "User" },
@@ -76,56 +54,20 @@ export default function UserForm() {
               name="email"
               type="email"
               required
-              error={
-                state.error?.email
-                  ? {
-                      tKey: "user.form.emailError",
-                      ns: "settings",
-                    }
-                  : undefined
-              }
+              error={{
+                tKey: "user.form.emailError",
+                ns: "settings",
+              }}
             />
-            <div className="flex gap-2 items-start">
-              <div className="flex-1">
-                <InputElement
-                  label={{
-                    tKey: "user.form.passwordLabel",
-                    ns: "settings",
-                  }}
-                  error={
-                    state.error?.password
-                      ? {
-                          tKey: "user.form.passwordError",
-                          ns: "settings",
-                        }
-                      : undefined
-                  }
-                  name="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="mt-1">
-                <PasswordGenerator onGenerate={setPassword} />
-              </div>
-            </div>
+            <PasswordInput />
           </div>
           <div className={cn("flex justify-start mt-6 ")}>
-            <Button type="submit" disabled={isPending}>
-              <CTranslation
-                tKey={
-                  isPending
-                    ? "user.form.submitButtonPending"
-                    : "user.form.submitButton"
-                }
-                ns="settings"
-              />
+            <Button type="submit">
+              <STranslation tKey={"user.form.submitButton"} ns="settings" />
             </Button>
           </div>
         </CardContent>
       </Card>
-    </form>
+    </UserFormWrapper>
   );
 }

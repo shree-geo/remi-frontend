@@ -45,7 +45,7 @@ export default function PasswordGenerator({
         className="gap-2"
       >
         <Key size={16} />
-        <CTranslation tKey="generatePassword" ns="settings" />
+        <CTranslation tKey={"generatePassword"} ns="settings" />
       </Button>
     </div>
   );

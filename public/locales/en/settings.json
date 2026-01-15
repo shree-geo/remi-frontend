@@ -16,7 +16,7 @@
       "roleError": "Role is required",
       "submitButton": "Create User",
       "submitButtonPending": "Creating User..."
-    },
-    "generatePassword": "Generate Password"
-  }
+    }
+  },
+  "generatePassword": "Generate Password"
 }
