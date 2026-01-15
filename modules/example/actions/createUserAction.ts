@@ -9,6 +9,7 @@ export default function createUserAction(
     const formValues = {
       first_name: formData.get("first_name"),
       date: formData.get("date"),
+      select: formData.get("select"),
     };
     console.log("FORM VALUES", formValues);
     return {

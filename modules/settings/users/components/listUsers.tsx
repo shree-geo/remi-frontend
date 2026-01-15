@@ -1,12 +1,7 @@
 import Column from "@/components/molecules/table/table.utils";
 import List from "@/components/organisms/list";
 import { getUsers } from "../data/users";
-
-interface User extends Record<string, unknown> {
-  id: string;
-  fullname: string;
-  email: string;
-}
+import { User } from "../definitions/user";
 
 interface ListUsersProps {
   searchParams: Awaited<PageProps<never>["searchParams"]>;
@@ -16,7 +11,7 @@ const columns: Column<User>[] = [
   new Column("id"),
   new Column("fullname", {
     header: "Full Name",
-    cell: (user) => <strong>{user.fullname}</strong>,
+    cell: (user) => <strong>{user.first_name + " " + user.last_name}</strong>,
   }),
   new Column("email"),
   Column.display({
@@ -42,8 +37,8 @@ export default async function ListUsers(props: ListUsersProps) {
   if (error) {
     throw new Error(error.message);
   }
-  const total = response?.data?.data?.count || 0;
-  const users = response?.data?.data?.results || [];
+  const total = response?.data.data.count || 0;
+  const users = response?.data.data.results || [];
 
   return (
     <div>
