@@ -1,5 +1,6 @@
 import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
 import InputElement from "@/components/molecules/Form/Input";
+import { SelectBox } from "@/components/molecules/Form/select";
 import TextAreaElement from "@/components/molecules/Form/textArea";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,6 +43,11 @@ export default function UserForm() {
               }}
               name="bio"
               required
+            />
+            <SelectBox
+              id="select"
+              name="select"
+              options={[{ label: "sth", value: "sth" }]}
             />
           </div>
         </CardContent>

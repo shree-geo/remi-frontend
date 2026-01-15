@@ -5,13 +5,18 @@
       "description": "Manage application users, roles, and permissions."
     },
     "form": {
-      "firstNameLabel": "First Name",
-      "firstNameError": "First Name is required",
-      "firstNameHelper": "Please enter your first name",
-      "bioLabel": "Bio",
-      "bioError": "Bio is required",
-      "bioHelper": "Please enter your bio",
-      "selectLabel": "Select the option"
+      "title": "User Form",
+      "fullNameLabel": "Full Name",
+      "fullNameError": "Full Name is required",
+      "emailLabel": "Email",
+      "emailError": "Email is required",
+      "passwordLabel": "Password",
+      "passwordError": "Password is required",
+      "roleLabel": "Role",
+      "roleError": "Role is required",
+      "submitButton": "Create User",
+      "submitButtonPending": "Creating User..."
     }
-  }
+  },
+  "generatePassword": "Generate Password"
 }

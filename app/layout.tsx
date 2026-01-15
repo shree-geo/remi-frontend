@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import I18nProvider from "@/contexts/i18n.context";
 import { getT } from "@/i18n";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 
@@ -32,7 +31,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <I18nProvider>{children}</I18nProvider>
+        <>{children}</>
       </body>
     </html>
   );

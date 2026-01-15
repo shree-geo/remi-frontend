@@ -1,55 +1,72 @@
-import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
 import InputElement from "@/components/molecules/Form/Input";
-import TextAreaElement from "@/components/molecules/Form/textArea";
+import { SelectBox } from "@/components/molecules/Form/select";
+import STranslation from "@/components/molecules/translations/STranslation";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import UserFormWrapper from "./formWrapper";
+import PasswordInput from "./passwordInput";
 
 export default function UserForm() {
   return (
     <UserFormWrapper>
       <Card>
         <CardHeader>
-          <CardTitle>Example Form</CardTitle>
+          <CardTitle>
+            <STranslation tKey="user.form.title" ns="settings" />
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <div
-            className={cn(
-              "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
-            )}
-          >
+          <div className={cn("grid grid-cols-1 lg:grid-cols-2 gap-6")}>
             <InputElement
               label={{
-                tKey: "user.form.firstNameLabel",
+                tKey: "user.form.fullNameLabel",
                 ns: "settings",
               }}
-              name="first_name"
+              name="full_name"
+              type="text"
               required
+              error={{
+                tKey: "user.form.fullNameError",
+                ns: "settings",
+              }}
             />
-            <DatePickerAD id="date" name="date" required />
-            <TextAreaElement
+            <SelectBox
+              name="role"
               label={{
-                tKey: "user.form.bioLabel",
+                tKey: "user.form.roleLabel",
                 ns: "settings",
               }}
-              name="bio"
-              required
+              error={{
+                tKey: "user.form.roleError",
+                ns: "settings",
+              }}
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "user", label: "User" },
+              ]}
             />
+            <InputElement
+              label={{
+                tKey: "user.form.emailLabel",
+                ns: "settings",
+              }}
+              name="email"
+              type="email"
+              required
+              error={{
+                tKey: "user.form.emailError",
+                ns: "settings",
+              }}
+            />
+            <PasswordInput />
+          </div>
+          <div className={cn("flex justify-start mt-6 ")}>
+            <Button type="submit">
+              <STranslation tKey={"user.form.submitButton"} ns="settings" />
+            </Button>
           </div>
         </CardContent>
-        <CardFooter>
-          <CardAction>
-            <Button type="submit">Save</Button>
-          </CardAction>
-        </CardFooter>
       </Card>
     </UserFormWrapper>
   );

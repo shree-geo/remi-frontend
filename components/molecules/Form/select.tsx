@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { TranslationDefinition } from "@/definitions/translation.definition";
 import { cn } from "@/lib/utils";
-import { ComponentProps, useRef } from "react";
+import { type ComponentProps, useRef } from "react";
 import CTranslation from "../translations/CTranslation";
 import FormElementBottom from "./FormElementBottom";
 
