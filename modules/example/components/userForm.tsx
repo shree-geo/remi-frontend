@@ -45,6 +45,7 @@ export default function UserForm() {
               required
             />
             <ComboboxElement
+              id="fruit"
               name="fruit"
               label={{
                 tKey: "user.form.fruitLabel",

@@ -8,15 +8,13 @@ export interface ComboboxElementProps<T extends string>
   helper?: TranslationDefinition | string;
 }
 
-export default function ComboboxElement<T extends string>({
-  error,
-  helper,
-  ...props
-}: ComboboxElementProps<T>) {
+export default function ComboboxElement<T extends string>(
+  props: ComboboxElementProps<T>
+) {
   return (
     <div>
       <ComboboxInput {...props} />
-      <FormElementBottom error={error} helper={helper} />
+      <FormElementBottom error={props.error} helper={props.helper} />
     </div>
   );
 }

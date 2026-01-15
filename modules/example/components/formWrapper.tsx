@@ -1,12 +1,9 @@
 "use client";
 
-import { PropsWithChildren, useActionState } from "react";
+import { type PropsWithChildren, useActionState } from "react";
 import createExampleAction from "../actions/createExampleAction";
 
 export default function ExampleFormWrapper({ children }: PropsWithChildren) {
-  const [state, action] = useActionState(createExampleAction, {
-    fruit: "",
-  });
-  console.log("ExampleFormWrapper state:", state);
+  const [, action] = useActionState(createExampleAction, undefined);
   return <form action={action}>{children}</form>;
 }
