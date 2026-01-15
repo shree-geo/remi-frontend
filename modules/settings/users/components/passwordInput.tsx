@@ -21,7 +21,7 @@ const PasswordInput = ({ state }: PasswordInputProps) => {
           }}
           error={
             state.error?.password && {
-              tKey: "user.form.passwordError",
+              tKey: `${state.error.password}`,
               ns: "settings",
             }
           }

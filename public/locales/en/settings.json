@@ -8,18 +8,24 @@
       "title": "User Form",
       "firstNameLabel": "First Name",
       "lastNameLabel": "Last Name",
-      "firstNameError": "First name is required",
-      "lastNameError": "Last name is required",
       "employeeIdLabel": "Employee ID",
-      "employeeIdError": "Employee ID is required",
       "emailLabel": "Email",
-      "emailError": "Email is required",
       "passwordLabel": "Password",
-      "passwordError": "Password is required",
       "roleLabel": "Role",
-      "roleError": "Role is required",
       "submitButton": "Create User",
       "submitButtonPending": "Creating User..."
+    },
+    "error": {
+      "firstNameError": "First name is required",
+      "minLengthFirstNameError": "First name must be at least 2 characters",
+      "lastNameError": "Last name is required",
+      "minLengthLastNameError": "Last name must be at least 2 characters",
+      "emailError": "Email is required",
+      "invalidEmailError": "Invalid email format",
+      "passwordError": "Password is required",
+      "minLengthPasswordError": "Password must be at least 8 characters",
+      "maxLengthPasswordError": "Password must not exceed 64 characters",
+      "roleError": "Please select a valid role"
     }
   },
   "generatePassword": "Generate Password"
