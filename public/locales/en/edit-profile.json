@@ -1,0 +1,15 @@
+{
+  "title": "Edit Profile",
+  "firstNameLabel": "First name",
+  "lastNameLabel": "Last name",
+  "employeeIdLabel": "Employee Id",
+  "phoneNumberLabel": "Phone Number",
+  "alternatePhoneLabel": "Alternate Phone Number",
+  "addressLabel": "Address",
+  "officeLevelLabel": "Office Level",
+  "provinceLabel": "Province",
+  "emailLabel": "Email",
+  "roleLabel": "Role",
+  "saveButton": "Save",
+  "emailError": "Please enter a valid email address."
+}

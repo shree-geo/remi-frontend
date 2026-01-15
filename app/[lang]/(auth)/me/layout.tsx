@@ -1,14 +1,16 @@
 import { Card } from "@/components/ui/card";
 import { SidebarGroup, SidebarMenu } from "@/components/ui/sidebar";
 import { NavItem } from "@/layouts/auth/navItem";
-import { KeyRoundIcon, UserIcon, UserPenIcon } from "lucide-react";
+import { KeyRoundIcon, UserPenIcon } from "lucide-react";
+import ProfileAvatar from "./page";
 
 export default function ProfileLayout({ children }: LayoutProps<"/[lang]/me">) {
   return (
-    <Card className="grid grid-cols-12">
+    <Card className="grid grid-cols-12 p-4">
       <div className="col-span-4">
+        <ProfileAvatar />
         <SidebarGroup>
-          <SidebarMenu>
+          {/* <SidebarMenu>
             <NavItem
               item={{
                 title: "Profile",
@@ -18,7 +20,7 @@ export default function ProfileLayout({ children }: LayoutProps<"/[lang]/me">) {
                 isCollapsible: false,
               }}
             />
-          </SidebarMenu>
+          </SidebarMenu> */}
           <SidebarMenu>
             <NavItem
               item={{
