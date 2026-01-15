@@ -99,7 +99,7 @@ export async function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/me">
+                <Link href="/me/edit">
                   <BadgeCheck />
                   Account
                 </Link>

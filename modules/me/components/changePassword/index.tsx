@@ -1,13 +1,7 @@
 import STranslation from "@/components/molecules/translations/STranslation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import ChangePasswordForm from "./components/changePasswordForm";
-
 const ChangePassword = () => {
   return (
     <>
@@ -20,14 +14,8 @@ const ChangePassword = () => {
               className="text-xl"
             />
           </CardTitle>
-          <CardDescription>
-            <STranslation
-              tKey="description"
-              ns="change-password"
-              className="text-xs"
-            />
-          </CardDescription>
         </CardHeader>
+        <Separator />
         <CardContent>
           <ChangePasswordForm />
         </CardContent>

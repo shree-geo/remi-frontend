@@ -1,4 +1,25 @@
 import InputElement from "@/components/molecules/Form/Input";
+import { SelectBox } from "@/components/molecules/Form/select";
+
+const OFFICE_LEVEL_OPTIONS = [
+  {
+    label: "Province",
+    value: "province",
+  },
+  {
+    label: "District",
+    value: "district",
+  },
+  {
+    label: "Municipality",
+    value: "municipality",
+  },
+
+  {
+    label: "Ward",
+    value: "ward",
+  },
+];
 
 export default function EditOfficeInformation() {
   return (
@@ -12,16 +33,16 @@ export default function EditOfficeInformation() {
             ns: "edit-profile",
           }}
           name="role"
-          required
+          disabled
         />
 
-        <InputElement
+        <SelectBox
           label={{
             tKey: "officeLevelLabel",
             ns: "edit-profile",
           }}
-          name="office_level"
-          required
+          id="office_level"
+          options={OFFICE_LEVEL_OPTIONS}
         />
       </div>
 
