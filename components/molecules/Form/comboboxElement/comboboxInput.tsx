@@ -1,5 +1,6 @@
 "use client";
 
+import CTranslation from "@/components/molecules/translations/CTranslation";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -15,8 +16,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { TranslationDefinition } from "@/definitions/translation.definition";
 import { cn } from "@/lib/utils";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import * as React from "react";
 
 interface IDropdownOption<T> {
@@ -24,9 +26,10 @@ interface IDropdownOption<T> {
   value: T;
 }
 
-interface ComboboxElementProps<T> extends React.ComponentProps<typeof Popover> {
+export interface ComboboxInputProps<T>
+  extends React.ComponentProps<typeof Popover> {
   name: string;
-  label?: string;
+  label?: TranslationDefinition;
   options: IDropdownOption<T>[];
   placeholder?: string;
   searchPlaceholder?: string;
@@ -34,9 +37,10 @@ interface ComboboxElementProps<T> extends React.ComponentProps<typeof Popover> {
   className?: string;
   disabled?: boolean;
   labelProps?: React.ComponentProps<typeof Label>;
+  required?: boolean;
 }
 
-export default function ComboboxElement<T extends string>({
+export default function ComboboxInput<T extends string>({
   name,
   label,
   placeholder = "Select an option",
@@ -46,8 +50,9 @@ export default function ComboboxElement<T extends string>({
   className,
   disabled = false,
   labelProps,
+  required = false,
   ...props
-}: ComboboxElementProps<T>) {
+}: ComboboxInputProps<T>) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState<T | null>(
     value || null
@@ -58,10 +63,11 @@ export default function ComboboxElement<T extends string>({
   }, [value]);
 
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className={cn("w-full flex flex-col gap-2", className)}>
       {label && (
         <Label htmlFor={name} {...labelProps}>
-          {label}
+          <CTranslation {...label} />
+          {required && <span className=" text-rose-600">*</span>}
         </Label>
       )}
 
@@ -88,7 +94,7 @@ export default function ComboboxElement<T extends string>({
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent className="w-full p-0" align="start">
+        <PopoverContent className="p-0" side="bottom" align="start">
           <Command>
             <CommandInput placeholder={searchPlaceholder} className="h-9" />
             <CommandList>
@@ -107,16 +113,9 @@ export default function ComboboxElement<T extends string>({
                       setSelectedValue(newValue);
                       setOpen(false);
                     }}
+                    data-checked={selectedValue === option.value}
                   >
                     {option.label}
-                    <Check
-                      className={cn(
-                        "ml-auto h-4 w-4",
-                        selectedValue === option.value
-                          ? "opacity-100"
-                          : "opacity-0"
-                      )}
-                    />
                   </CommandItem>
                 ))}
               </CommandGroup>
