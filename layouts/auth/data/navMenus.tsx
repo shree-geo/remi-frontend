@@ -17,6 +17,7 @@ export const allMenus: Record<string, Array<IMenu>> = {
       isCollapsible: false,
     },
   ],
+
   example: [
     {
       title: "Example",
