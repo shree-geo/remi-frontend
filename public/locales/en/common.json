@@ -19,5 +19,9 @@
     "ministry": " Ministry of Labour, Employment and Social Security • Nepal",
     "developedBy": "Developed By:",
     "supportedBy": "Supported By:"
+  },
+  "button": {
+    "submit": "Submit",
+    "submitting": "Submitting..."
   }
 }
