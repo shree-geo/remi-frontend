@@ -1,7 +1,7 @@
-"use server";
+"use client";
 import { IListResponse, IResponse } from "@/definitions/api.definition";
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { getSession } from "./auth";
+import { getSession } from "./auth-client";
 
 type TEMPLATE =
   | (Record<string, unknown> | undefined)
@@ -10,7 +10,7 @@ type ApiResponse<T extends TEMPLATE> = T extends Array<infer U>
   ? IListResponse<U>
   : IResponse<T>;
 
-export async function handleApi<T extends TEMPLATE>(
+export async function handleClientApi<T extends TEMPLATE>(
   cb: (options: {
     config: AxiosRequestConfig;
   }) => Promise<AxiosResponse<ApiResponse<T>>>,
@@ -26,7 +26,7 @@ export async function handleApi<T extends TEMPLATE>(
     const { isAuthenticated } = options;
     const headers: AxiosRequestConfig["headers"] = {};
     if (isAuthenticated) {
-      const session = await getSession();
+      const session = getSession();
       if (!session) throw new AxiosError("Session not found", "UNAUTHORIZED");
       headers.Authorization = `Bearer ${session?.access}`;
     }
