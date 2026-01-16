@@ -2,28 +2,29 @@
 import { IListResponse, IResponse } from "@/definitions/api.definition";
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { getSession } from "./auth";
+import { api } from "./axios";
 
 type TEMPLATE =
   | (Record<string, unknown> | undefined)
   | Array<Record<string, unknown>>;
-type ApiResponse<T extends TEMPLATE> = T extends Array<infer U>
-  ? IListResponse<U>
-  : IResponse<T>;
+type ApiResponse<T extends TEMPLATE> =
+  T extends Array<infer U> ? IListResponse<U> : IResponse<T>;
 
 export async function handleApi<T extends TEMPLATE>(
-  cb: (options: {
-    config: AxiosRequestConfig;
-  }) => Promise<AxiosResponse<ApiResponse<T>>>,
-  options: {
-    isAuthenticated: boolean;
-  } = {
-    isAuthenticated: true,
+  // cb: (options: {
+  //   config: AxiosRequestConfig;
+  // }) => Promise<AxiosResponse<ApiResponse<T>>>,
+  apiOptions: {
+    url: string;
+    method: "get" | "post" | "put" | "delete" | "patch";
+    data?: T extends Array<infer U> ? U : T;
+    isAuthenticated?: boolean;
   }
 ): Promise<
   [AxiosResponse<ApiResponse<T>> | null, AxiosError<ApiResponse<T>> | null]
 > {
   try {
-    const { isAuthenticated } = options;
+    const { url, method, data, isAuthenticated = true } = apiOptions;
     const headers: AxiosRequestConfig["headers"] = {};
     if (isAuthenticated) {
       const session = await getSession();
@@ -31,10 +32,11 @@ export async function handleApi<T extends TEMPLATE>(
       headers.Authorization = `Bearer ${session?.access}`;
     }
 
-    const response = await cb({
-      config: {
-        headers,
-      },
+    const response = await api({
+      url,
+      method,
+      headers,
+      data,
     });
     return [response, null];
   } catch (error) {
