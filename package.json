@@ -11,11 +11,14 @@
     "format": "prettier --write .",
     "generate:template": "node generator/index.js generator",
     "postinstall": "husky install",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@hookform/resolvers": "^5.2.2",
+    "@vitejs/plugin-react": "^5.1.2",
     "accept-language": "^3.0.20",
     "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
@@ -52,8 +55,14 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^5.0.0",
     "@commitlint/cli": "^20.3.0",
     "@commitlint/config-conventional": "^20.3.0",
+    "@storybook/addon-a11y": "^10.1.11",
+    "@storybook/addon-docs": "^10.1.11",
+    "@storybook/addon-onboarding": "^10.1.11",
+    "@storybook/addon-vitest": "^10.1.11",
+    "@storybook/nextjs-vite": "^10.1.11",
     "@tailwindcss/postcss": "^4",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.21",
@@ -61,11 +70,18 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/yargs": "^17.0.35",
+    "@vitest/browser-playwright": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.17",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "eslint-plugin-storybook": "^10.1.11",
     "husky": "^9.1.7",
+    "playwright": "^1.57.0",
+    "storybook": "^10.1.11",
     "tailwindcss": "^4",
     "typescript": "^5",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.17",
     "yargs": "^18.0.0"
   }
 }
