@@ -1,4 +1,5 @@
 import DatePickerAD from "@/components/molecules/Form/DateElements/DatePickerAD/DatePickerAD";
+import DatePickerBS from "@/components/molecules/Form/DateElements/DatePickerBS/DatePickerBS";
 import InputElement from "@/components/molecules/Form/Input";
 import { SelectBox } from "@/components/molecules/Form/select";
 import TextAreaElement from "@/components/molecules/Form/textArea";
@@ -17,7 +18,7 @@ import UserFormWrapper from "./formWrapper";
 export default function UserForm() {
   return (
     <UserFormWrapper>
-      <Card>
+      <Card className="">
         <CardHeader>
           <CardTitle>Example Form</CardTitle>
         </CardHeader>
@@ -36,6 +37,14 @@ export default function UserForm() {
               required
             />
             <DatePickerAD id="date" name="date" required />
+            <DatePickerBS
+              id="bs_date"
+              name="bs_date"
+              label={{
+                tKey: "bsdate",
+              }}
+              required
+            />
             <TextAreaElement
               label={{
                 tKey: "user.form.bioLabel",
