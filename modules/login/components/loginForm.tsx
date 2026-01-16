@@ -1,9 +1,9 @@
 "use client";
 import FormToast from "@/components/molecules/Form/FormToast";
+import InputElement from "@/components/molecules/Form/Input";
+import PasswordInputElement from "@/components/molecules/Form/password";
 import CTranslation from "@/components/molecules/translations/CTranslation";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { redirect } from "next/navigation";
 import { useActionState } from "react";
 import { loginAction } from "../action/loginAction";
@@ -24,43 +24,27 @@ export default function LoginForm() {
 
   return (
     <form className="space-y-4" action={action}>
-      <div className="space-y-2">
-        <Label htmlFor="email">
-          <CTranslation tKey="emailLabel" ns="login" />
-        </Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="user@example.com"
-          required
-          defaultValue={state.email}
-        />
-        {state.error?.email && (
-          <p className="text-red-500">
-            <CTranslation tKey={state.error.email as string} ns="login" />
-          </p>
-        )}
-      </div>
+      <InputElement
+        label={{ tKey: "emailLabel", ns: "login" }}
+        error={state.error?.email}
+        defaultValue={state.email}
+        id="email"
+        name="email"
+        type="email"
+        required
+      />
 
-      <div className="space-y-2">
-        <Label htmlFor="password">
-          <CTranslation tKey="passwordLabel" ns="login" />
-        </Label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="••••••••"
-          defaultValue={state.password}
-          required
-        />
-        {state.error?.password && (
-          <p className="text-red-500">
-            <CTranslation tKey={state.error.password as string} ns="login" />
-          </p>
-        )}
-      </div>
+      <PasswordInputElement
+        label={{ tKey: "passwordLabel", ns: "login" }}
+        error={state.error?.password}
+        id="password"
+        name="password"
+        type="password"
+        placeholder="••••••••"
+        defaultValue={state.password}
+        required
+      />
+
       <ForgetPasswordBtn />
       <Button type="submit" className="w-full" disabled={isPending}>
         <CTranslation

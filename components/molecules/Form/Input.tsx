@@ -13,7 +13,7 @@ import FormElementBottom from "./FormElementBottom";
 
 interface InputElementProps extends ComponentProps<typeof InputGroupInput> {
   label: TranslationDefinition;
-  error?: TranslationDefinition | string;
+  error?: TranslationDefinition | string | string[];
   helper?: TranslationDefinition | string;
 }
 
