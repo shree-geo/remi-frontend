@@ -19,9 +19,14 @@ const meta = {
         "link",
       ],
     },
+    size: {
+      control: "select",
+      options: ["default", "sm", "lg"],
+    },
   },
   args: {
     variant: "default",
+    size: "default",
   },
 } satisfies Meta<typeof Button>;
 
