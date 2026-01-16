@@ -1,7 +1,8 @@
 import { nextApi } from "@/lib/axios";
 import { catchActionError } from "@/lib/catchActionError";
+import { handleClientApi } from "@/lib/clientApiHandler";
 import { loginSchema } from "../definitions/login.definition";
-import { LoginActionState } from "../definitions/type";
+import { CredentialsType, LoginActionState } from "../definitions/type";
 
 export async function loginAction(
   prevState: LoginActionState,
@@ -15,13 +16,36 @@ export async function loginAction(
     const validatedData = loginSchema.parse(rawData);
     const data = validatedData;
 
-    const response = await nextApi.post("/api/auth/login", data);
+    const [response, error] = await handleClientApi<CredentialsType>(
+      async () => await nextApi.post("/api/auth/login", data),
+      { isAuthenticated: false }
+    );
 
+    if (error) {
+      return {
+        ...prevState,
+        ...data,
+        error: error?.response?.data?.error || null,
+        success: false,
+        message: "server error",
+      };
+    }
+
+    if (response) {
+      console.log(response);
+      return {
+        ...prevState,
+        ...data,
+        data: response.data,
+        success: true,
+        message: "Login successful",
+      };
+    }
     return {
       ...prevState,
-      data: response.data,
-      success: true,
-      message: "Login successful",
+      ...data,
+      success: false,
+      message: "Something went wrong",
     };
-  });
+  }, prevState);
 }

@@ -1,4 +1,5 @@
 "use client";
+import FormToast from "@/components/molecules/Form/FormToast";
 import CTranslation from "@/components/molecules/translations/CTranslation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,8 +18,6 @@ export default function LoginForm() {
     success: false,
   });
 
-  console.log("error", state.error);
-
   if (state.success) {
     redirect("/dashboard");
   }
@@ -35,6 +34,7 @@ export default function LoginForm() {
           type="email"
           placeholder="user@example.com"
           required
+          defaultValue={state.email}
         />
         {state.error?.email && (
           <p className="text-red-500">
@@ -52,6 +52,7 @@ export default function LoginForm() {
           name="password"
           type="password"
           placeholder="••••••••"
+          defaultValue={state.password}
           required
         />
         {state.error?.password && (
@@ -67,6 +68,7 @@ export default function LoginForm() {
           ns="login"
         />
       </Button>
+      <FormToast error={state.error} message={state.message} />
     </form>
   );
 }
