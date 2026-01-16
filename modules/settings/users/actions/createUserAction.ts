@@ -1,32 +1,32 @@
-import { ActionState } from "@/definitions/action.definition";
+import { nextApi } from "@/lib/axios";
 import { catchActionError } from "@/lib/catchActionError";
+import { UserActionState } from "../definitions/type";
+import { userSchema } from "../definitions/user.definitions";
 
-const initialState: ActionState<undefined> = {
-  success: false,
-  message: "",
-  error: null,
-};
-
-export default function createUserAction(
-  prevState: ActionState<undefined> | undefined,
+export async function createUserAction(
+  prevState: UserActionState,
   formData: FormData
 ) {
-  const safeState = prevState ?? initialState;
-
-  return catchActionError<ActionState<undefined>>(async () => {
-    const formValues = {
-      full_name: formData.get("full_name"),
+  return catchActionError<UserActionState>(async () => {
+    const rawData = {
       email: formData.get("email"),
-      role: formData.get("role"),
       password: formData.get("password"),
+      first_name: formData.get("first_name"),
+      last_name: formData.get("last_name"),
+      employee_id: formData.get("employee_id"),
+      role: formData.get("role"),
     };
+    const validatedData = userSchema.parse(rawData);
+    const data = validatedData;
+    console.log("data", data);
 
-    console.log("FORM VALUES", formValues);
+    const response = await nextApi.post("/user", data);
 
     return {
-      ...safeState,
+      ...prevState,
+      data: response.data,
       success: true,
-      message: "User created successfully",
+      message: "Login successful",
     };
-  }, safeState);
+  });
 }
