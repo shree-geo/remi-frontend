@@ -9,6 +9,7 @@ import { TranslationDefinition } from "@/definitions/translation.definition";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { useRef, useState } from "react";
+import FormElementBottom from "../../FormElementBottom";
 
 export interface DatePickerADProps {
   label?: TranslationDefinition | string;
@@ -18,11 +19,8 @@ export interface DatePickerADProps {
   value?: string;
   onChange?: (date: string | undefined) => void;
   required?: boolean;
-  placeholder?: string;
   disabled?: boolean;
   className?: string;
-  minDate?: string;
-  maxDate?: string;
   error?: TranslationDefinition | string;
   helper?: TranslationDefinition | string;
 }
@@ -37,6 +35,7 @@ export function DatePickerBSComponent({
   required = false,
   className,
   error,
+  helper,
 }: DatePickerADProps) {
   const isControlled = controlledValue !== undefined;
 
@@ -102,6 +101,7 @@ export function DatePickerBSComponent({
         required={required}
         aria-hidden="true"
       />
+      <FormElementBottom error={error} helper={helper} />
     </div>
   );
 }
