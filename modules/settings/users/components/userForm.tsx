@@ -47,7 +47,7 @@ export default function UserForm() {
               type="text"
               error={
                 state.error?.first_name && {
-                  tKey: "user.form.firstNameError",
+                  tKey: `${state.error.first_name}`,
                   ns: "settings",
                 }
               }
@@ -62,7 +62,7 @@ export default function UserForm() {
               type="text"
               error={
                 state.error?.last_name && {
-                  tKey: "user.form.lastNameError",
+                  tKey: `${state.error.last_name}`,
                   ns: "settings",
                 }
               }
@@ -77,7 +77,7 @@ export default function UserForm() {
               type="text"
               error={
                 state.error?.employee_id && {
-                  tKey: "user.form.employeeIdError",
+                  tKey: `${state.error.employee_id}`,
                   ns: "settings",
                 }
               }
@@ -90,7 +90,7 @@ export default function UserForm() {
               }}
               error={
                 state.error?.role && {
-                  tKey: "user.form.roleError",
+                  tKey: `${state.error.role}`,
                   ns: "settings",
                 }
               }
@@ -109,7 +109,7 @@ export default function UserForm() {
               required
               error={
                 state.error?.email && {
-                  tKey: "user.form.emailError",
+                  tKey: `${state.error.email}`,
                   ns: "settings",
                 }
               }
