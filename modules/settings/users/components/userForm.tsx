@@ -14,9 +14,12 @@ export default function UserForm() {
   const [state, action, isPending] = useActionState(createUserAction, {
     email: "",
     password: "",
+    password_confirm: "",
     first_name: "",
     last_name: "",
     employee_id: "",
+    phone: "",
+    username: "",
     role: "user",
     error: null,
     message: "",
@@ -51,6 +54,7 @@ export default function UserForm() {
                   ns: "settings",
                 }
               }
+              defaultValue={state.first_name}
               required
             />
             <InputElement
@@ -67,6 +71,54 @@ export default function UserForm() {
                 }
               }
               required
+              defaultValue={state.last_name}
+            />
+            <InputElement
+              label={{
+                tKey: "user.form.emailLabel",
+                ns: "settings",
+              }}
+              name="email"
+              type="email"
+              required
+              error={
+                state.error?.email && {
+                  tKey: "user.form.emailError",
+                  ns: "settings",
+                }
+              }
+              defaultValue={state.email}
+            />
+            <InputElement
+              label={{
+                tKey: "user.form.usernameLabel",
+                ns: "settings",
+              }}
+              name="username"
+              type="text"
+              error={
+                state.error?.username && {
+                  tKey: "user.form.usernameError",
+                  ns: "settings",
+                }
+              }
+              required
+              defaultValue={state.username}
+            />
+            <InputElement
+              label={{
+                tKey: "user.form.phoneLabel",
+                ns: "settings",
+              }}
+              name="phone"
+              type="tel"
+              error={
+                state.error?.phone && {
+                  tKey: "user.form.phoneError",
+                  ns: "settings",
+                }
+              }
+              defaultValue={state.phone}
             />
             <InputElement
               label={{
@@ -74,13 +126,15 @@ export default function UserForm() {
                 ns: "settings",
               }}
               name="employee_id"
-              type="text"
+              type="number"
               error={
                 state.error?.employee_id && {
                   tKey: "user.form.employeeIdError",
                   ns: "settings",
                 }
               }
+              required
+              defaultValue={state.employee_id}
             />
             <SelectBox
               name="role"
@@ -98,22 +152,10 @@ export default function UserForm() {
                 { value: "admin", label: "Admin" },
                 { value: "user", label: "User" },
               ]}
+              defaultValue={state.role}
             />
-            <InputElement
-              label={{
-                tKey: "user.form.emailLabel",
-                ns: "settings",
-              }}
-              name="email"
-              type="email"
-              required
-              error={
-                state.error?.email && {
-                  tKey: "user.form.emailError",
-                  ns: "settings",
-                }
-              }
-            />
+          </div>
+          <div className={cn("grid grid-cols-1 lg:grid-cols-2 gap-6 mt-2")}>
             <PasswordInput state={state} />
           </div>
           <div className={cn("flex justify-start mt-6 ")}>
