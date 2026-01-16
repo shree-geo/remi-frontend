@@ -1,4 +1,4 @@
-import UserForm from "@/modules/example/components/userForm";
+import UserForm from "@/modules/example/components/form";
 
 export default function Page() {
   return (

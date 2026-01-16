@@ -24,7 +24,7 @@ export default function UserForm() {
         <CardContent>
           <div
             className={cn(
-              "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
+              "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4",
             )}
           >
             <InputElement

@@ -17,9 +17,7 @@ export const defaultInitState: TestState = {
   data: null,
 };
 
-export const createTestStore = (
-  initState: TestState = defaultInitState
-) =>
+export const createTestStore = (initState: TestState = defaultInitState) =>
   createStore<TestStore>()((set) => ({
     ...initState,
     setLoading: (loading) => set({ loading }),

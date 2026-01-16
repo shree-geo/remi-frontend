@@ -15,7 +15,7 @@ api.interceptors.response.use(
   },
   async (error: AxiosError) => {
     throw error;
-  }
+  },
 );
 
 const nextApi = Axios.create({});
@@ -30,7 +30,7 @@ nextApi.interceptors.response.use(
   },
   async (error: AxiosError) => {
     throw error;
-  }
+  },
 );
 
 export { api, nextApi };

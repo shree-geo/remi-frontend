@@ -35,11 +35,11 @@ export default function Pagination(props: PaginationProps) {
   const endPage = Math.min(totalPages, currentPage + 2);
   const prevPages = Array.from(
     { length: Math.min(2, currentPage - 1) },
-    (_, i) => currentPage - (1 - i)
+    (_, i) => currentPage - (1 - i),
   );
   const nextPages = Array.from(
     { length: Math.min(2, totalPages - currentPage) },
-    (_, i) => currentPage + (i + 1)
+    (_, i) => currentPage + (i + 1),
   );
 
   const getPaginatedUrl = (page: number, limit: number = 10) => {

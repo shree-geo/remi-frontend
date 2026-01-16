@@ -1,25 +1,47 @@
 import Column from "@/components/molecules/table/table.utils";
+import Text from "@/components/molecules/text";
 import List from "@/components/organisms/list";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { DeleteIcon, EditIcon } from "lucide-react";
 import { getUsers } from "../data/users";
-import { User } from "../definitions/user";
+import { User } from "../definitions/user.definitions";
 
 interface ListUsersProps {
   searchParams: Awaited<PageProps<never>["searchParams"]>;
 }
 
 const columns: Column<User>[] = [
-  new Column("id"),
-  new Column("fullname", {
+  Column.display({
     header: "Full Name",
-    cell: (user) => <strong>{user.first_name + " " + user.last_name}</strong>,
+    cell: (user) => (
+      <div className="flex space-x-4">
+        <Avatar>
+          <AvatarImage src="" />
+          <AvatarFallback>
+            {user.first_name[0] + user.last_name[0]}
+          </AvatarFallback>
+        </Avatar>
+        <div>
+          <Text className="font-bold">
+            {user.first_name + " " + user.last_name}
+          </Text>
+          <Text>{user.role_name}</Text>
+        </div>
+      </div>
+    ),
   }),
   new Column("email"),
   Column.display({
     header: "Actions",
     cell: () => (
       <div>
-        <button className="text-blue-600 underline mr-2">Edit</button>
-        <button className="text-red-600 underline">Delete</button>
+        <Button size="icon-xs">
+          <EditIcon />
+        </Button>
+        <Button variant="destructive" size="icon-xs">
+          <DeleteIcon />
+        </Button>
       </div>
     ),
   }),
@@ -35,7 +57,7 @@ export default async function ListUsers(props: ListUsersProps) {
     : 10;
   const [response, error] = await getUsers({ query: { offset, limit } });
   if (error) {
-    throw new Error(error.message);
+    return JSON.stringify(error);
   }
   const total = response?.data.data.count || 0;
   const users = response?.data.data.results || [];
@@ -45,7 +67,8 @@ export default async function ListUsers(props: ListUsersProps) {
       <List<User>
         headerProps={{
           title: {
-            tKey: "Example",
+            tKey: "user.list.title",
+            ns: "settings",
           },
         }}
         tableProps={{

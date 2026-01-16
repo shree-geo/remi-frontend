@@ -28,7 +28,7 @@ export const StatsCard = ({
     <div
       className={cn(
         "group relative overflow-hidden rounded-xl border bg-background p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
-        className
+        className,
       )}
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-linear-gradient-to-br from-primary/5 via-transparent to-primary/10" />
@@ -46,7 +46,7 @@ export const StatsCard = ({
           {trend && (
             <div
               className={cn(
-                "mt-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+                "mt-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium",
               )}
             >
               {trend.isPositive ? "▲" : "▼"} {Math.abs(trend.value)}%

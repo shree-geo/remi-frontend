@@ -14,7 +14,7 @@ function generatePassword(
   length: number = 14,
   uppercase: boolean = true,
   number: boolean = true,
-  symbols: boolean = true
+  symbols: boolean = true,
 ): string {
   let charset = "abcdefghijklmnopqrstuvwxyz";
   let password = "";

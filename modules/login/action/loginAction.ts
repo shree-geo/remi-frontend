@@ -6,7 +6,7 @@ import { CredentialsType, LoginActionState } from "../definitions/type";
 
 export async function loginAction(
   prevState: LoginActionState,
-  formData: FormData
+  formData: FormData,
 ) {
   return catchActionError<LoginActionState>(async () => {
     const rawData = {
@@ -18,7 +18,7 @@ export async function loginAction(
 
     const [response, error] = await handleClientApi<CredentialsType>(
       async () => await nextApi.post("/api/auth/login", data),
-      { isAuthenticated: false }
+      { isAuthenticated: false },
     );
 
     if (error) {

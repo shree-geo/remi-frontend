@@ -5,7 +5,7 @@ import { ForgotPasswordActionState } from "../definitions/type";
 
 export async function forgotPasswordAction(
   prevState: ForgotPasswordActionState,
-  formData: FormData
+  formData: FormData,
 ) {
   return catchActionError<ForgotPasswordActionState>(async () => {
     const rawData = {

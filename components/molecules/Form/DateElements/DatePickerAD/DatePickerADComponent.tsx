@@ -52,7 +52,7 @@ export function DatePickerADComponent({
   };
 
   const [internalDate, setInternalDate] = React.useState<Date | undefined>(
-    getDateValue(defaultValue)
+    getDateValue(defaultValue),
   );
 
   const hiddenInputRef = React.useRef<HTMLInputElement>(null);
@@ -91,7 +91,7 @@ export function DatePickerADComponent({
               "w-full justify-start text-left font-normal",
               !date && "text-muted-foreground",
               error && "border-red-500 focus:ring-red-500",
-              className
+              className,
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />

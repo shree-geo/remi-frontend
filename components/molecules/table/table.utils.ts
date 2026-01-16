@@ -32,7 +32,7 @@ export default class Column<T extends Record<string, unknown>> {
   }
 
   static display<T extends Record<string, unknown> = Record<string, unknown>>(
-    options: Required<ColumnOptions<T>>
+    options: Required<ColumnOptions<T>>,
   ): Column<T> {
     return new Column(undefined, options);
   }

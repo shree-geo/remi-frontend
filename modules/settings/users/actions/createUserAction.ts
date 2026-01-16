@@ -5,7 +5,7 @@ import { userSchema } from "../definitions/user.definitions";
 
 export async function createUserAction(
   prevState: UserActionState,
-  formData: FormData
+  formData: FormData,
 ) {
   return catchActionError<UserActionState>(async () => {
     const rawData = {

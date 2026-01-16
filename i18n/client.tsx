@@ -8,7 +8,7 @@ const runsOnServerSide = typeof window === "undefined";
 
 export function useT(
   ns: string | string[],
-  options: { keyPrefix?: string } | undefined
+  options: { keyPrefix?: string } | undefined,
 ) {
   const lng = useParams()?.lang;
   const hasChangedLanguage = useRef(false);

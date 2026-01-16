@@ -7,7 +7,7 @@ interface STranslationPropsBase extends TranslationDefinition {
 }
 
 export default async function STranslation(
-  props: PropsWithChildren<STranslationPropsBase>
+  props: PropsWithChildren<STranslationPropsBase>,
 ) {
   const { slot, ns, options, tKey, ...rest } = props;
   const Component = slot || "p";

@@ -78,6 +78,7 @@
     "eslint-plugin-storybook": "^10.1.11",
     "husky": "^9.1.7",
     "playwright": "^1.57.0",
+    "prettier": "^3.8.0",
     "storybook": "^10.1.11",
     "tailwindcss": "^4",
     "typescript": "^5",

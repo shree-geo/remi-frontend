@@ -29,5 +29,6 @@ docker run -d -p 3000:3000 --env NODE_ENV=production --name remi-app-dev remi-ap
 ```
 
 Notes:
+
 - The container uses `pnpm` via Corepack. If your CI or environment needs a different pnpm version, adjust the Dockerfile.
 - Middleware (language proxy) is included; ensure you build with `pnpm build` (Dockerfile runs it in the builder stage).

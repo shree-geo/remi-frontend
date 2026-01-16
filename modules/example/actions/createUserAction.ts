@@ -3,7 +3,7 @@ import { catchActionError } from "@/lib/catchActionError";
 
 export default function createUserAction(
   prevState: ActionState<undefined>,
-  formData: FormData
+  formData: FormData,
 ) {
   return catchActionError<ActionState<undefined>>(async () => {
     const formValues = {

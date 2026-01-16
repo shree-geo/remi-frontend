@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 export default function generateSearchParams(
-  paramsObject: Record<string, unknown>
+  paramsObject: Record<string, unknown>,
 ) {
   const filtered = _.pickBy(paramsObject, _.identity);
 

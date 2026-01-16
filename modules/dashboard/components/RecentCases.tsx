@@ -13,7 +13,7 @@ export default function RecentCases() {
     <>
       <Card
         className={cn(
-          "group relative lg:col-span-2 overflow-hidden rounded-xl border bg-background p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          "group relative lg:col-span-2 overflow-hidden rounded-xl border bg-background p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
         )}
       >
         <CardHeader className="flex flex-row items-center justify-between">

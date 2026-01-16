@@ -11,7 +11,7 @@ import STranslation from "../translations/STranslation";
 import type { TableProps } from "./table.definition";
 
 export default function SuperTable<
-  T extends Record<string, unknown> = Record<string, unknown>
+  T extends Record<string, unknown> = Record<string, unknown>,
 >({ data, columns }: TableProps<T>) {
   return (
     <Table>

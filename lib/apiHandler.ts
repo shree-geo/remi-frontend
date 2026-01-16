@@ -6,9 +6,8 @@ import { getSession } from "./auth";
 type TEMPLATE =
   | (Record<string, unknown> | undefined)
   | Array<Record<string, unknown>>;
-type ApiResponse<T extends TEMPLATE> = T extends Array<infer U>
-  ? IListResponse<U>
-  : IResponse<T>;
+type ApiResponse<T extends TEMPLATE> =
+  T extends Array<infer U> ? IListResponse<U> : IResponse<T>;
 
 export async function handleApi<T extends TEMPLATE>(
   cb: (options: {
@@ -18,7 +17,7 @@ export async function handleApi<T extends TEMPLATE>(
     isAuthenticated: boolean;
   } = {
     isAuthenticated: true,
-  }
+  },
 ): Promise<
   [AxiosResponse<ApiResponse<T>> | null, AxiosError<ApiResponse<T>> | null]
 > {

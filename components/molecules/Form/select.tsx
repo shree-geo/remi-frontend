@@ -15,8 +15,10 @@ import { type ComponentProps, useRef } from "react";
 import CTranslation from "../translations/CTranslation";
 import FormElementBottom from "./FormElementBottom";
 
-export interface SelectElementProps
-  extends Omit<ComponentProps<typeof Select>, "onValueChange"> {
+export interface SelectElementProps extends Omit<
+  ComponentProps<typeof Select>,
+  "onValueChange"
+> {
   name: string;
   id?: string;
   label?: TranslationDefinition | string;
@@ -90,7 +92,7 @@ export function SelectBox({
           className={cn(
             "w-full",
             error && "border-red-500 focus:ring-red-500",
-            triggerClassName
+            triggerClassName,
           )}
         >
           <SelectValue

@@ -32,12 +32,12 @@ export function proxy(request: NextRequest) {
 
   // Check if pathname already has a locale
   const pathnameHasLocale = languages.some((locale) =>
-    pathname.startsWith(`/${locale}`)
+    pathname.startsWith(`/${locale}`),
   );
 
   // Extract locale from pathname if it exists
   const lngInPath = languages.find((locale) =>
-    pathname.startsWith(`/${locale}`)
+    pathname.startsWith(`/${locale}`),
   );
 
   const headers = new Headers(request.headers);

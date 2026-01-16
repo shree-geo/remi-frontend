@@ -3,7 +3,7 @@ import FormElementBottom from "../../FormElementBottom";
 import { DatePickerADComponent } from "./DatePickerADComponent";
 
 export default function DatePickerAD(
-  props: ComponentProps<typeof DatePickerADComponent>
+  props: ComponentProps<typeof DatePickerADComponent>,
 ) {
   return (
     <div className="w-full">

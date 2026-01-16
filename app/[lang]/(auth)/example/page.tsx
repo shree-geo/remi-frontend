@@ -1,4 +1,4 @@
-import ListUsers from "@/modules/example/components/listUsers";
+import ListUsers from "@/modules/example/components/list";
 
 export default async function Page(props: PageProps<"/[lang]/settings/users">) {
   const searchParams = await props.searchParams;

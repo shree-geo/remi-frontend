@@ -1,8 +1,5 @@
 "use client";
-import {
-  createTestStore,
-  type TestStore,
-} from "@/store/test/store";
+import { createTestStore, type TestStore } from "@/store/test/store";
 import {
   createContext,
   type PropsWithChildren,
@@ -18,9 +15,7 @@ const TestContext = createContext<TestStoreApi | undefined>(undefined);
 export function useTestStore(): TestStore {
   const ctx = useContext(TestContext);
   if (!ctx)
-    throw new Error(
-      "useTestStore must be used within a TestStoreProvider"
-    );
+    throw new Error("useTestStore must be used within a TestStoreProvider");
   return useStore(ctx);
 }
 

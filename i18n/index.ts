@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 
 export async function getT(
   ns: string,
-  options: { keyPrefix?: string } | undefined
+  options: { keyPrefix?: string } | undefined,
 ) {
   const headerList = await headers();
   const lng = headerList.get(headerName);
@@ -25,7 +25,7 @@ export async function getT(
     t: i18next.getFixedT(
       dictionaries,
       Array.isArray(ns) ? ns[0] : ns,
-      options?.keyPrefix
+      options?.keyPrefix,
     ),
     i18n: i18next,
   };

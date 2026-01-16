@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
 
     const [response, error] = await handleApi<SessionPayload>(
       async () => await api.post(`/auth/login/`, { email, password }),
-      { isAuthenticated: false }
+      { isAuthenticated: false },
     );
     if (response) {
       const data = response?.data?.data;
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     if (error) {
       return NextResponse.json(
         { error: error?.response?.data?.error || error?.response?.data },
-        { status: error?.response?.data?.code || error?.status || 500 }
+        { status: error?.response?.data?.code || error?.status || 500 },
       );
     }
   } catch (error) {
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
           message: "Something went wrong. Please try again.[client error]",
         },
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

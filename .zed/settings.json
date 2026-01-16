@@ -1,0 +1,26 @@
+{
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
+  "tab_size": 2,
+  "format_on_save": "on",
+  "autosave": "off",
+  "formatter": "prettier",
+  "code_actions_on_format": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true,
+  },
+  "lsp": {
+    "tailwindcss": {
+      "settings": {
+        "tailwindCSS": {
+          "classAttributes": [
+            "class",
+            "className",
+            "classNames",
+            "classNames *",
+          ],
+        },
+      },
+    },
+  },
+}

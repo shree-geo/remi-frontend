@@ -8,7 +8,7 @@ interface CTranslationPropsBase extends TranslationDefinition {
 }
 
 export default function CTranslation(
-  props: PropsWithChildren<CTranslationPropsBase>
+  props: PropsWithChildren<CTranslationPropsBase>,
 ) {
   const { slot, ns, options, tKey, ...rest } = props;
   const Component = slot || "p";

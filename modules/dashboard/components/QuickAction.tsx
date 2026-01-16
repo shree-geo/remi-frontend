@@ -9,7 +9,7 @@ export default function QuickAction() {
     <>
       <Card
         className={cn(
-          "group relative mt-3 lg:col-span-2 overflow-hidden rounded-xl border bg-background p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          "group relative mt-3 lg:col-span-2 overflow-hidden rounded-xl border bg-background p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
         )}
       >
         <CardHeader>

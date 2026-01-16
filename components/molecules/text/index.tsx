@@ -2,8 +2,10 @@ import { cn } from "@/lib/utils";
 import type { HTMLAttributes, PropsWithChildren } from "react";
 
 type TextSize = "p" | "lead" | "large" | "small";
-interface TextPropsBase
-  extends Omit<HTMLAttributes<HTMLParagraphElement | HTMLSpanElement>, "slot"> {
+interface TextPropsBase extends Omit<
+  HTMLAttributes<HTMLParagraphElement | HTMLSpanElement>,
+  "slot"
+> {
   slot?: "span" | "p";
   size?: TextSize;
 }
