@@ -28,5 +28,6 @@ export class IResponseError {
     Object.assign(this, data);
   }
   detail?: string;
+  non_field_errors?: string[];
   [key: string]: string | string[] | undefined;
 }

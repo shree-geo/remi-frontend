@@ -8,8 +8,8 @@ services:
       - "3001:3000"
     volumes:
       - .:/app
-    environment:
-      - NODE_ENV=production
+    env_file:
+      - .env.production
   dev:
     container_name: remi-app-dev
     build:
@@ -20,8 +20,5 @@ services:
     volumes:
       - .:/app
     env_file:
-      - .env
-    environment:
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
-      - NODE_ENV=development
+      - .env.development
     restart: always
