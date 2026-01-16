@@ -1,4 +1,5 @@
-// app/api/auth/login/route.ts
+import { SessionPayload } from "@/definitions/auth.definition";
+import { handleApi } from "@/lib/apiHandler";
 import { createSession } from "@/lib/auth";
 import { api } from "@/lib/axios";
 import { NextRequest, NextResponse } from "next/server";
@@ -7,25 +8,32 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
 
-    // Call external API for authentication
-    const response = await api.post(`/auth/token/`, { email, password });
-    const data = await response.data?.data;
-
-    const { refresh, access } = data;
-
-    // Create session with user data
-    await createSession({
-      access: access,
-      refresh: refresh,
-    });
-
-    // Optionally store the external API token if needed for API calls
-    return NextResponse.json({
-      success: true,
-      token: access, // Can be stored in client for direct API calls
-      refresh: refresh,
-    });
+    const [response, error] = await handleApi<SessionPayload>(
+      async () => await api.post(`/auth/login/`, { email, password }),
+      { isAuthenticated: false }
+    );
+    if (response) {
+      const data = response?.data?.data;
+      await createSession(data);
+      return NextResponse.json(response?.data, { status: 201 });
+    }
+    if (error) {
+      return NextResponse.json(
+        { error: error?.response?.data?.error || error?.response?.data },
+        { status: error?.response?.data?.code || error?.status || 500 }
+      );
+    }
   } catch (error) {
-    return NextResponse.json(error, { status: 500 });
+    console.log("i am here", error);
+
+    return NextResponse.json(
+      {
+        error: {
+          error,
+          message: "Something went wrong. Please try again.[client error]",
+        },
+      },
+      { status: 500 }
+    );
   }
 }
