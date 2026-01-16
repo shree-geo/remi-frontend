@@ -1,46 +1,74 @@
 "use client";
 
+import PasswordInputElement from "@/components/molecules/Form/password";
 import CTranslation from "@/components/molecules/translations/CTranslation";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { changePasswordAction } from "@/modules/me/action/changePasswordAction";
+import { redirect } from "next/navigation";
+import { useActionState } from "react";
 
 export default function ChangePasswordForm() {
+  const [state, action, isPending] = useActionState(changePasswordAction, {
+    old_password: "",
+    password: "",
+    password_confirmation: "",
+    error: null,
+    message: "",
+    success: false,
+  });
+
+  console.log("error", state.error);
+
+  if (state.success) {
+    redirect("/dashboard");
+  }
   return (
-    <form>
-      <div className="space-y-2">
-        <Label htmlFor="currentPassword">
-          <CTranslation tKey="currentPasswordLabel" ns="change-password" />
-        </Label>
-        <Input
-          id="old_password"
+    <form action={action}>
+      <div className="space-y-4">
+        <PasswordInputElement
+          label={{
+            tKey: "currentPasswordLabel",
+            ns: "change-password",
+          }}
+          error={
+            state.error?.old_password && {
+              tKey: `${state.error?.old_password}`,
+              ns: "change-password",
+            }
+          }
           name="old_password"
-          type="old_password"
-          placeholder="Enter current password"
           required
         />
-        <Label htmlFor="newPassword">
-          <CTranslation tKey="newPasswordLabel" ns="change-password" />
-        </Label>
-        <Input
-          id="new_password"
-          name="new_password"
-          type="new_password"
-          placeholder="Enter new password"
+        <PasswordInputElement
+          label={{
+            tKey: "newPasswordLabel",
+            ns: "change-password",
+          }}
+          error={
+            state.error?.password && {
+              tKey: `${state.error?.password}`,
+              ns: "change-password",
+            }
+          }
+          name="password"
           required
         />
-        <Label htmlFor="email">
-          <CTranslation tKey="reEnterNewPasswordLabel" ns="change-password" />
-        </Label>
-        <Input
-          id="renew_password"
-          name="renew_password"
-          type="renew_password"
-          placeholder="Enter New password again"
+        <PasswordInputElement
+          label={{
+            tKey: "reEnterNewPasswordLabel",
+            ns: "change-password",
+          }}
+          error={
+            state.error?.password_confirmation && {
+              tKey: `${state.error?.password_confirmation}`,
+              ns: "change-password",
+            }
+          }
+          name="password_confirmation"
           required
         />
       </div>
-      <Button type="submit" className="w-full my-2">
+      <Button type="submit" className="w-full my-2" disabled={isPending}>
         <CTranslation tKey="resetButton" ns="change-password" />
       </Button>
     </form>

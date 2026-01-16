@@ -11,5 +11,24 @@
   "emailLabel": "Email",
   "roleLabel": "Role",
   "saveButton": "Save",
-  "emailError": "Please enter a valid email address."
+  "officeInformation": "Office Information",
+  "contactInformation": "Contact Information",
+  "basicInformation": "Basic Information",
+  "error": {
+    "firstNameError": "First name is required",
+    "minLengthFirstNameError": "First name must be at least 2 characters",
+    "maxLengthFirstNameError": "First name must be at most 100 characters",
+    "lastNameError": "Last name is required",
+    "minLengthLastNameError": "Last name must be at least 2 characters",
+    "maxLengthLastNameError": "Last name must be at most 100 characters",
+    "employeeIdError": "Employee ID is required",
+    "minLengthEmployeeIdError": "Employee ID must be at least 2 characters",
+    "maxLengthEmployeeIdError": "Employee ID must be at most 100 characters",
+    "phoneNumberError": "Phone number is required",
+    "minLengthPhoneNumberError": "Phone number must be at least 8 characters",
+    "maxLengthPhoneNumberError": "Phone number must be at most 15 characters",
+    "addressError": "Address is required",
+    "minLengthAddressError": "Address must be at least 2 characters",
+    "maxLengthAddressError": "Address must be at most 100 characters"
+  }
 }

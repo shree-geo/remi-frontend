@@ -1,5 +1,7 @@
 import InputElement from "@/components/molecules/Form/Input";
 import { SelectBox } from "@/components/molecules/Form/select";
+import CTranslation from "@/components/molecules/translations/CTranslation";
+import { Separator } from "@/components/ui/separator";
 
 const OFFICE_LEVEL_OPTIONS = [
   {
@@ -24,8 +26,12 @@ const OFFICE_LEVEL_OPTIONS = [
 export default function EditOfficeInformation() {
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-normal">Office Information</h2>
-
+      <CTranslation
+        ns="edit-profile"
+        tKey="officeInformation"
+        className="text-lg font-medium"
+      />
+      <Separator className="my-2" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InputElement
           label={{
@@ -43,9 +49,10 @@ export default function EditOfficeInformation() {
           }}
           id="office_level"
           options={OFFICE_LEVEL_OPTIONS}
+          name="office_level"
+          disabled
         />
       </div>
-
       <div className="grid grid-cols-1  gap-4">
         <InputElement
           label={{
@@ -53,7 +60,7 @@ export default function EditOfficeInformation() {
             ns: "edit-profile",
           }}
           name="province"
-          required
+          disabled
         />
       </div>
     </div>

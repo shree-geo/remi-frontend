@@ -7,7 +7,7 @@ import ProfileAvatar from "./page";
 export default function ProfileLayout({ children }: LayoutProps<"/[lang]/me">) {
   return (
     <Card className="grid grid-cols-12 p-4">
-      <div className="col-span-4">
+      <div className="xl:col-span-4 col-span-full ">
         <ProfileAvatar />
         <SidebarGroup>
           {/* <SidebarMenu>
@@ -46,7 +46,7 @@ export default function ProfileLayout({ children }: LayoutProps<"/[lang]/me">) {
           </SidebarMenu>
         </SidebarGroup>
       </div>
-      <div className="col-span-8">{children}</div>
+      <div className="xl:col-span-8 col-span-full">{children}</div>
     </Card>
   );
 }
